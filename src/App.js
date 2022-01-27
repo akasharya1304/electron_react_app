@@ -1,24 +1,22 @@
-import logo from './logo.svg';
+import {React, useState } from 'react';
 import './App.css';
+import Button from './Button';
 
 function App() {
+  const [tag,setTag] = useState();
+  const clicked =() => {
+    setTag(<Button />)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Hello React Desktop App</h1>
+      <h6>this is for checking</h6>
+      <Button />
+      <Button />
+      <button onClick={clicked}>Clicked to rendered new thing</button>
+      {tag}
     </div>
+    
   );
 }
 
