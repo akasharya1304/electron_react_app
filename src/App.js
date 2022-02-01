@@ -1,22 +1,13 @@
-import {React, useState } from 'react';
+import {React} from 'react';
 import './App.css';
-import Button from './Button';
+import MainRouter from './routes';
 
 function App() {
-  const [tag,setTag] = useState();
-  const clicked =() => {
-    setTag(<Button />)
-  }
+  
   return (
     <div>
-      <h1>Hello React Desktop App</h1>
-      <h6>this is for checking</h6>
-      <Button />
-      <Button />
-      <button onClick={clicked}>Clicked to rendered new thing</button>
-      {tag}
+      <MainRouter />
     </div>
-    
   );
 }
 
