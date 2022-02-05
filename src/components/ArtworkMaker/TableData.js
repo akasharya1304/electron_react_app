@@ -1,8 +1,17 @@
+import {useRef, useState } from 'react';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { Button, FormControl, FormControlLabel, Paper,Radio,RadioGroup,Table, TableBody, TableCell, TableContainer, TableHead, TableRow,} from '@material-ui/core';
-import { useState } from 'react';
-import TableShow from '../UI/TableShow';
+
+import ReactToPrint from 'react-to-print';
+import DisplayBox from '../UI/DisplayBox';
+import handlePrint from "../UI/PRINT";
+import handlePreview from "../UI/PREVIEW";
+import ArtworkTable from './ArtworkTable';
+
+
+import './auto.css'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -22,12 +31,12 @@ const useStyles = makeStyles((theme) => ({
     },
     introContainer: {
         display: 'flex',
-        height: '100%',
         width: '100%',
         backgroundColor: '#4472C4'
     },
     introInnerContainer: {
         display: 'flex',
+        justifyContent: 'center',
         margin: '3% 0 0 0'
     },
     tableContainer: {
@@ -57,11 +66,25 @@ const useStyles = makeStyles((theme) => ({
         "&:hover" : {
             backgroundColor: '#18b603',
         }
+    },
+    artworkBox: {
+        display :'flex',
+        flexDirection: 'column',
+        // margin: '4% 0 0 0',
+        alignContent: 'center',
+        justifyContent: 'center',
+        pageBreakAfter: 'always'
     }
 }));
 
 let TableData = (props) => {
     const classes = useStyles();
+    const componentRef = useRef();
+
+    let today = new Date();
+    let date = today.getDate() + '-' + (today.getMonth()+1) + '-' + today.getFullYear();
+
+
     let artworkData = props.data;
     const [displayValue , setDisplayValue] = useState('none');
     const [artwork, setArtwork] = useState([]);
@@ -72,7 +95,7 @@ let TableData = (props) => {
         for(let i=0; i<artworkData.length; i++) {
             if(artworkData[i].length <= 4){
                 if(i === name-1){
-                    if(artworkData[name-1][3] != value){
+                    if(artworkData[name-1][3] !== value){
                         artworkData[name-1][3] = value;
                     }
                 }
@@ -83,10 +106,11 @@ let TableData = (props) => {
     function handleTableData(event) {
         setArtwork(artworkData)
         setDisplayValue('block');
+        console.log(artwork)
     }
     
     return (
-        <Grid container className={classes.introContainer} style={{display: props.displayValues }}>
+        <Grid container className={classes.introContainer}  style={{display: props.displayValues }}>
             <Grid item container className={classes.introInnerContainer}>
                 <TableContainer component={Paper} className={classes.tableContainer}>
                     <Table sx={{ width: 650 }}>
@@ -98,13 +122,13 @@ let TableData = (props) => {
                                 <TableCell align='right'>Circle</TableCell>
                             </TableRow>
                         </TableHead>
-                        <TableBody className={classes.root}>
-                            {(props.data).map((item,index) => (
-                                <TableRow key={index}>
+                        {(props.data).map((item,index) => (
+                            <TableBody key={index} className={classes.root}>
+                                <TableRow >
                                     <TableCell component='th' scope='row'>{item[0]}</TableCell>
-                                    <TableCell align='right'>{item[1]}</TableCell>
-                                    <TableCell align='right'>{item[2]}</TableCell>
-                                    <FormControl className={classes.formControl}>
+                                    <TableCell align='center'>{item[1]}</TableCell>
+                                    <TableCell align='center'>{item[2]}</TableCell>
+                                    <FormControl className={classes.formControl} component='td'>
                                         <RadioGroup row defaultValue="1">
                                             <FormControlLabel 
                                                 value="1" 
@@ -126,8 +150,8 @@ let TableData = (props) => {
                                         </RadioGroup>
                                     </FormControl>
                                 </TableRow>
-                            ))}
-                        </TableBody>
+                            </TableBody>
+                        ))}
                     </Table>
                 </TableContainer>
                 <Grid item container className={classes.buttonContainer}>
@@ -140,7 +164,40 @@ let TableData = (props) => {
                         SUBMIT
                     </Button>
                 </Grid>
-                <TableShow displayValues={displayValue} TableData={artwork}/>
+                <ArtworkTable  displayValues={displayValue} TableData={artwork}/>
+                <Grid ref={componentRef} className={classes.artworkBox}>
+                    {
+                        artwork.map(boxItem => {
+                            return (
+                                <DisplayBox 
+                                    key={boxItem[0]}
+                                    id={boxItem[0] -1}
+                                    date={date}
+                                    Title={boxItem[1]}
+                                    colour={boxItem[2]}
+                                    circle={boxItem[3]}
+                                />
+                            )
+                        })
+                    }
+                </Grid>
+                <Grid item container style={{display: `${displayValue}` }}>
+                    <Grid item container className='printButtonContainer'  >
+                        <ReactToPrint
+                            xs={8}
+                            trigger={() => <button className='printButton'>Print - ARTWORK</button>}
+                            content={() => componentRef.current}
+                            print={handlePrint}
+                        />
+                        <ReactToPrint
+                            xs={8}
+                            trigger={() => <button className='printButton'>Preview - ARTWORK</button>}
+                            content={() => componentRef.current}
+                            print={handlePreview}
+                        />
+                    </Grid>
+                </Grid>
+                
             </Grid>
         </Grid>   
     )

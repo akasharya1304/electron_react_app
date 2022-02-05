@@ -5,31 +5,32 @@ import {
     Route,
 } from "react-router-dom";
 import Home from "../components/Home";
-import Manually from "../components/Manually";
-import Automatically from "../components/Automatically"
+import JdPrint from "../components/JdPrint";
+import ArtworkMaker from "../components/ArtworkMaker"
 import SideBar from "../components/SideBar";
 
 
 
+
 let MainRouter = () => {
-    const [buttonData, setButtonData] = useState([]);
+    let buttonData = '';
+    const [clickButton , setClickButton] = useState('Home');
     
     function buttonClick(data) {
-        setButtonData(() => {
-            return [data];
-          });
+        buttonData = data;
+        setClickButton(buttonData)
     }
     
     
     return (
         <Router>
             <div>
-                <SideBar buttonDataName={buttonData}/>
+                <SideBar buttonDataName={clickButton} />
             </div>
             <Routes>
                 <Route exact path="/" element={<Home onButton={buttonClick} />} />
-                <Route exact path="/manually" element={<Manually />} />
-                <Route exact path="/automatically" element={<Automatically />} />
+                <Route exact path="/jdPrint" element={<JdPrint />} />
+                <Route exact path="/artworkMaker" element={<ArtworkMaker />} />
             </Routes>
         </Router>
     )

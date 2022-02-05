@@ -6,9 +6,10 @@ import { Typography } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
     createBox: {
         display: 'flex',
-        width: '180px',
-        height: '120px',
-        border: '1px solid red'
+        width: '48.26mm',
+        height: '32mm',
+        border: '1px solid red',
+        margin: '0 1px'
     },
     createBoxTitleContainer: {
         display: 'flex',
@@ -100,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-let Create = (props) => {
+let CreatePrint = (props) => {
     const classes = useStyles();
 
     return (
@@ -147,4 +148,4 @@ let Create = (props) => {
     )
 }
 
-export default Create;
+export default CreatePrint;

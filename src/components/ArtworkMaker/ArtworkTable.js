@@ -1,12 +1,13 @@
+import {useRef} from 'react';
+
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { Paper,Table, TableBody, TableCell, TableContainer, TableHead, TableRow,} from '@material-ui/core';
 
-import {useRef} from 'react';
 
 import ReactToPrint from 'react-to-print';
-import handlePrint from "./PRINT";
-import handlePreviewTable from './FULL_PREVIEW';
+import handlePrint from "../UI/PRINT";
+import handlePreview from "../UI/PREVIEW";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -40,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-let TableShow = (props) => {
+let ArtworkTable = (props) => {
     const classes = useStyles();
 
     const componentRefExcelTable = useRef();
@@ -55,18 +56,6 @@ let TableShow = (props) => {
                                 <TableCell>S.No.</TableCell>
                                 <TableCell align='center'>STYLE</TableCell>
                                 <TableCell align='center'>COLOUR</TableCell>
-                                <TableCell align='center'>10</TableCell>
-                                <TableCell align='center'>12</TableCell>
-                                <TableCell align='center'>14</TableCell>
-                                <TableCell align='center'>16</TableCell>
-                                <TableCell align='center'>18</TableCell>
-                                <TableCell align='center'>20</TableCell>
-                                <TableCell align='center'>22</TableCell>
-                                <TableCell align='center'>24</TableCell>
-                                <TableCell align='center'>26</TableCell>
-                                <TableCell align='center'>28</TableCell>
-                                <TableCell align='center'>30</TableCell>
-                                <TableCell align='center'>32</TableCell>
                                 <TableCell align='center'>Circle</TableCell>
                             </TableRow>
                         </TableHead>
@@ -77,18 +66,6 @@ let TableShow = (props) => {
                                     <TableCell align='center'>{item[1]}</TableCell>
                                     <TableCell align='center'>{item[2]}</TableCell>
                                     <TableCell align='center'>{item[3]}</TableCell>
-                                    <TableCell align='center'>{item[4]}</TableCell>
-                                    <TableCell align='center'>{item[5]}</TableCell>
-                                    <TableCell align='center'>{item[6]}</TableCell>
-                                    <TableCell align='center'>{item[7]}</TableCell>
-                                    <TableCell align='center'>{item[8]}</TableCell>
-                                    <TableCell align='center'>{item[9]}</TableCell>
-                                    <TableCell align='center'>{item[10]}</TableCell>
-                                    <TableCell align='center'>{item[11]}</TableCell>
-                                    <TableCell align='center'>{item[12]}</TableCell>
-                                    <TableCell align='center'>{item[13]}</TableCell>
-                                    <TableCell align='center'>{item[14]}</TableCell>
-                                    <TableCell align='center'>{item[15]}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
@@ -96,14 +73,16 @@ let TableShow = (props) => {
                 </TableContainer>
                 <Grid item container className='printButtonContainer'>
                     <ReactToPrint
+                        xs={8}
                         trigger={() => <button className='printButton'>Print Table</button>}
                         content={() => componentRefExcelTable.current}
                         print={handlePrint}
                     />
                     <ReactToPrint
+                        xs={8}
                         trigger={() => <button className='printButton'>Preview Table</button>}
                         content={() => componentRefExcelTable.current}
-                        print={handlePreviewTable}
+                        print={handlePreview}
                     />
                 </Grid>
             </Grid>
@@ -111,4 +90,4 @@ let TableShow = (props) => {
     )
 }
 
-export default TableShow;
+export default ArtworkTable;

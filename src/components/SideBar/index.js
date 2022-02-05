@@ -3,8 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
-import PanToolAltRoundedIcon from '@mui/icons-material/PanToolAltRounded';
-import SmartToyRoundedIcon from '@mui/icons-material/SmartToyRounded';
+import AutofpsSelectIcon from '@mui/icons-material/AutofpsSelect';
+import PrintRoundedIcon from '@mui/icons-material/PrintRounded';
 import { IconButton } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
     sideBarContainer: {
         display: 'flex',
+        displayPrint: 'none',
         flexDirection: 'column',
         position: 'fixed',
         left: '0',
@@ -26,11 +27,14 @@ const useStyles = makeStyles((theme) => ({
     },
     iconContainer: {
         display: 'flex',
+        displayPrint: 'none',
         justifyContent:'space-evenly',
         margin: '20px 0'
        
     },
     icon: {
+        display: 'flex',
+        displayPrint: 'none',
         color: '#2368E0',
         width: '50px',
         height: '65px',
@@ -41,46 +45,50 @@ const useStyles = makeStyles((theme) => ({
 
 let SideBar = (props) => {
     const classes = useStyles();
+    // const [buttonClicked, setButtonClicked] = useState(props.buttonDataName)
 
     const [buttons, setButtons] = useState({
         homeButton : true,
-        manualButton : false,
-        automaticButton : false
+        jdPrintButton : false,
+        artworkMakerButton : false
     })
     
     function handleHomeButton(event) {
         setButtons(() => {
-            return{homeButton : true, manualButton : false, automaticButton : false}
+            return{homeButton : true, jdPrintButton : false, artworkMakerButton : false}
         })
     }
-    function handleManualButton(event) {
+    function handleJdPrintButton(event) {
         setButtons(() => {
-            return{homeButton : false, manualButton : true, automaticButton : false}
+            return{homeButton : false, jdPrintButton : true, artworkMakerButton : false}
         })
     }
-    function handleAutomaticButton(event) {
+    function handleArtworkMakerButton(event) {
         setButtons(() => {
-            return{homeButton : false, manualButton : false, automaticButton : true}
+            return{homeButton : false, jdPrintButton : false, artworkMakerButton : true}
         })
     }
 
+    
+
     return (
-        <Grid container className={classes.sideBarContainer}>
+        // {buttonClicked === 'jdPrint' ? handleJdPrintButton(): buttonClicked === 'artworkMaker' ? handleArtworkMakerButton() : handleHomeButton()}
+        <Grid container className={classes.sideBarContainer} sx={{ displayPrint: 'none' }}>
             <Grid item container  className={classes.iconContainer}>
-                <IconButton  onClick={handleHomeButton} component={Link} to='/'>
-                    <HomeRoundedIcon className={classes.icon} style={{color: (buttons.homeButton) &&'#FFF'}}/>
+                <IconButton  onClick={handleHomeButton} component={Link} to='/' sx={{ displayPrint: 'none' }}>
+                    <HomeRoundedIcon className={classes.icon} style={{color: (buttons.homeButton) &&'#FFF'}} sx={{ displayPrint: 'none' }}/>
+                </IconButton>    
+            </Grid> 
+            <Grid item container  className={classes.iconContainer}>
+                <IconButton  onClick={handleArtworkMakerButton} component={Link} to='/artworkMaker' sx={{ displayPrint: 'none' }}>
+                    <AutofpsSelectIcon className={classes.icon} style={{color: (buttons.artworkMakerButton) &&'#FFF'}} sx={{ displayPrint: 'none' }}/>
                 </IconButton>    
             </Grid>     
             <Grid item container  className={classes.iconContainer}>
-                <IconButton  onClick={handleManualButton} component={Link} to='/manually'>
-                    <PanToolAltRoundedIcon className={classes.icon} style={{color: (buttons.manualButton) &&'#FFF'}}/>
+                <IconButton  onClick={handleJdPrintButton} component={Link} to='/jdPrint' sx={{ displayPrint: 'none' }}>
+                    <PrintRoundedIcon className={classes.icon} style={{color: (buttons.jdPrintButton) &&'#FFF'}} sx={{ displayPrint: 'none' }}/>
                 </IconButton>    
-            </Grid>     
-            <Grid item container  className={classes.iconContainer}>
-                <IconButton  onClick={handleAutomaticButton} component={Link} to='/automatically'>
-                    <SmartToyRoundedIcon className={classes.icon} style={{color: (buttons.automaticButton) &&'#FFF'}}/>
-                </IconButton>    
-            </Grid>     
+            </Grid>       
         </Grid>
     )
 }

@@ -1,0 +1,20 @@
+.printButtonContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.printButton {
+    display: flex;
+    width: 20% ;
+    border-radius: 15px;
+    margin: 2%;
+    font-size: 20px;
+    font-weight: 700;
+    background-color: #dd7724;
+    color: #FFF;
+    padding: 1%;
+}
+
+.printButton:hover {
+    background-color: #18b603;
+}

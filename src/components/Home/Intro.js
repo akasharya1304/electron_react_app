@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
         color: '#f73707',
         fontWeight: '800',
         letterSpacing: '0.2rem',
+        textDecoration: 'underline',
 
         [theme.breakpoints.down('sm')]: {
             fontSize: '36px',
@@ -43,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
         margin : '5% 0 0 0',
 
         "&:hover" : {
-            backgroundColor: '#F2A140'
+            backgroundColor: '#18b603'
         },
         [theme.breakpoints.down('md')]: {
             fontSize: '26px',
@@ -60,26 +61,26 @@ let Intro = (props) => {
             <Grid container>
                 <Grid item container className={classes.introInnerContainer}>
                     <Typography variant='h3' className={classes.headingContainer}>
-                        JD POLLYBAG ARTWORK 
+                        JD POLYBAG ARTWORK & PRINTOUT
                     </Typography>
                     <Grid item container className={classes.buttonContainer}>
-                        <Button 
-                            variant='text' 
-                            className={classes.button}
-                            component={Link} 
-                            to='/manually'
-                            onClick={() => {props.onButtonHandle('manual')}}
-                        >
-                            MANUALLY
-                        </Button>
                         <Button 
                             variant='text'
                             className={classes.button}
                             component={Link} 
-                            to='/automatically'
-                            onClick={() => {props.onButtonHandle('automatic')}}
+                            to='/artworkMaker'
+                            onClick={() => {props.onButtonHandle('artworkMaker')}}
                         >   
-                            AUTOMATICALLY
+                            ARTWORK MAKER
+                        </Button>
+                        <Button 
+                            variant='text' 
+                            className={classes.button}
+                            component={Link} 
+                            to='/jdPrint'
+                            onClick={() => {props.onButtonHandle('jdPrint')}}
+                        >
+                            JD PRINT
                         </Button>
                     </Grid>    
                 </Grid>
