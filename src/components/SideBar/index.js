@@ -11,14 +11,6 @@ import { Tooltip } from '@mui/material';
 
 
 const useStyles = makeStyles((theme) => ({
-    // root: {
-    //     "& .MuiTooltip-popper": {
-    //         color: "white",
-    //         fontWeight : '700',
-    //         fontSize: '16px',
-    //         backgroundColor: "blue"
-    //     },
-    // },
     sideBarContainer: {
         display: 'flex',
         displayPrint: 'none',
@@ -58,7 +50,6 @@ const useStyles = makeStyles((theme) => ({
 
 let SideBar = (props) => {
     const classes = useStyles();
-    // const [buttonClicked, setButtonClicked] = useState(props.buttonDataName)
 
     const [buttons, setButtons] = useState({
         homeButton : true,
@@ -85,7 +76,6 @@ let SideBar = (props) => {
     
 
     return (
-        // {buttonClicked === 'jdPrint' ? handleJdPrintButton(): buttonClicked === 'artworkMaker' ? handleArtworkMakerButton() : handleHomeButton()}
         <Grid container className={classes.sideBarContainer} sx={{ displayPrint: 'none' }}>
             <Grid item container  className={classes.iconContainer}>
                 <Tooltip title={<span className={classes.tooltip}>Home</span>} placement="right-start" arrow>
@@ -107,7 +97,7 @@ let SideBar = (props) => {
                         <PrintRoundedIcon className={classes.icon} style={{color: (buttons.jdPrintButton) &&'#FFF'}} sx={{ displayPrint: 'none' }}/>
                     </IconButton>
                 </Tooltip>    
-            </Grid>       
+            </Grid>
         </Grid>
     )
 }

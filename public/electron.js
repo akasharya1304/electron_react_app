@@ -1,4 +1,5 @@
 const { app, ipcMain, BrowserWindow, Menu} = require('electron')
+const { autoUpdater } = require('electron-updater');
 const fs = require('fs')
 const path = require('path')
 const os = require('os')
@@ -139,6 +140,10 @@ function createWindow () {
 
   const mainMenu = Menu.buildFromTemplate(menuTemplate);
   Menu.setApplicationMenu(mainMenu)
+
+  win.once('ready-to-show', () => {
+    autoUpdater.checkForUpdatesAndNotify();
+  })
 
   
 }
