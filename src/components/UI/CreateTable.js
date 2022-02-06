@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
         margin: '3% 0 0 0'
     },
     tableContainer: {
-        width: '95%',
+        width: '98%',
         margin: '0 auto' ,
         fontWeight: '700'
     },

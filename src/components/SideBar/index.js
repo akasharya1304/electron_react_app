@@ -7,10 +7,18 @@ import AutofpsSelectIcon from '@mui/icons-material/AutofpsSelect';
 import PrintRoundedIcon from '@mui/icons-material/PrintRounded';
 import { IconButton } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-
+import { Tooltip } from '@mui/material';
 
 
 const useStyles = makeStyles((theme) => ({
+    // root: {
+    //     "& .MuiTooltip-popper": {
+    //         color: "white",
+    //         fontWeight : '700',
+    //         fontSize: '16px',
+    //         backgroundColor: "blue"
+    //     },
+    // },
     sideBarContainer: {
         display: 'flex',
         displayPrint: 'none',
@@ -32,6 +40,11 @@ const useStyles = makeStyles((theme) => ({
         margin: '20px 0'
        
     },
+    tooltip: {
+        fontSize: '16px',
+        fontWeight: '600'
+    },
+    
     icon: {
         display: 'flex',
         displayPrint: 'none',
@@ -75,19 +88,25 @@ let SideBar = (props) => {
         // {buttonClicked === 'jdPrint' ? handleJdPrintButton(): buttonClicked === 'artworkMaker' ? handleArtworkMakerButton() : handleHomeButton()}
         <Grid container className={classes.sideBarContainer} sx={{ displayPrint: 'none' }}>
             <Grid item container  className={classes.iconContainer}>
-                <IconButton  onClick={handleHomeButton} component={Link} to='/' sx={{ displayPrint: 'none' }}>
-                    <HomeRoundedIcon className={classes.icon} style={{color: (buttons.homeButton) &&'#FFF'}} sx={{ displayPrint: 'none' }}/>
-                </IconButton>    
+                <Tooltip title={<span className={classes.tooltip}>Home</span>} placement="right-start" arrow>
+                    <IconButton  onClick={handleHomeButton} component={Link} to='/' sx={{ displayPrint: 'none' }}>
+                        <HomeRoundedIcon className={classes.icon} style={{color: (buttons.homeButton) &&'#FFF'}} sx={{ displayPrint: 'none' }}/>
+                    </IconButton> 
+                </Tooltip>   
             </Grid> 
             <Grid item container  className={classes.iconContainer}>
-                <IconButton  onClick={handleArtworkMakerButton} component={Link} to='/artworkMaker' sx={{ displayPrint: 'none' }}>
-                    <AutofpsSelectIcon className={classes.icon} style={{color: (buttons.artworkMakerButton) &&'#FFF'}} sx={{ displayPrint: 'none' }}/>
-                </IconButton>    
+                <Tooltip title={<span className={classes.tooltip}>Artwork</span>} placement="right-start" arrow>
+                    <IconButton  onClick={handleArtworkMakerButton} component={Link} to='/artworkMaker' sx={{ displayPrint: 'none' }}>
+                        <AutofpsSelectIcon className={classes.icon} style={{color: (buttons.artworkMakerButton) &&'#FFF'}} sx={{ displayPrint: 'none' }}/>
+                    </IconButton>   
+                </Tooltip> 
             </Grid>     
             <Grid item container  className={classes.iconContainer}>
-                <IconButton  onClick={handleJdPrintButton} component={Link} to='/jdPrint' sx={{ displayPrint: 'none' }}>
-                    <PrintRoundedIcon className={classes.icon} style={{color: (buttons.jdPrintButton) &&'#FFF'}} sx={{ displayPrint: 'none' }}/>
-                </IconButton>    
+                <Tooltip title={<span className={classes.tooltip}>JD Print</span>} placement="right-start" arrow>
+                    <IconButton  onClick={handleJdPrintButton} component={Link} to='/jdPrint' sx={{ displayPrint: 'none' }}>
+                        <PrintRoundedIcon className={classes.icon} style={{color: (buttons.jdPrintButton) &&'#FFF'}} sx={{ displayPrint: 'none' }}/>
+                    </IconButton>
+                </Tooltip>    
             </Grid>       
         </Grid>
     )

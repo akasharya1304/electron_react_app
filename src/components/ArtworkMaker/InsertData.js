@@ -51,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
         padding: '1%',
         border: '5px dotted #101d8d',
         backgroundColor: '#0370a3',
+        scrollbarColor: 'red green'
     },
     fontColor: {
         color: '#FFF',
@@ -130,7 +131,7 @@ let InsertData = () => {
                     variant='standard' 
                     InputProps={{ disableUnderline: true }}
                     multiline 
-                    minRows={12} 
+                    rows={12} 
                     className={classes.textArea}
                     inputProps={{className: classes.fontColor}}
                     onChange={handleTextArea} 

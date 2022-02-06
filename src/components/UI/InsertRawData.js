@@ -51,6 +51,8 @@ const useStyles = makeStyles((theme) => ({
         padding: '1%',
         border: '5px dotted #101d8d',
         backgroundColor: '#0370a3',
+        // overflow: 'scroll',
+        // overflowX: 'hidden'
     },
     fontColor: {
         color: '#FFF',
@@ -131,7 +133,7 @@ let InsertRawData = (props) => {
                     variant='standard' 
                     InputProps={{ disableUnderline: true }}
                     multiline 
-                    minRows={12} 
+                    rows={12} 
                     className={classes.textArea}
                     inputProps={{className: classes.fontColor}}
                     onChange={handleTextArea} 
