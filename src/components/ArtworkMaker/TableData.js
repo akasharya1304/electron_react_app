@@ -6,12 +6,12 @@ import { Button, FormControl, FormControlLabel, Paper,Radio,RadioGroup,Table, Ta
 
 import ReactToPrint from 'react-to-print';
 import DisplayBox from '../UI/DisplayBox';
-import handlePrint from "../UI/PRINT";
 import handlePreview from "../UI/PREVIEW";
 import ArtworkTable from './ArtworkTable';
 
 
 import './auto.css'
+import handlePrint from '../UI/PRINT';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -70,10 +70,8 @@ const useStyles = makeStyles((theme) => ({
     artworkBox: {
         display :'flex',
         flexDirection: 'column',
-        // margin: '4% 0 0 0',
-        alignContent: 'center',
-        justifyContent: 'center',
-        pageBreakAfter: 'always'
+        // width: '100%'
+        // border: '1px solid green'
     }
 }));
 
@@ -147,6 +145,30 @@ let TableData = (props) => {
                                                 name={item[0]}
                                                 onChange={handleCircleRadio}
                                             />
+                                            <FormControlLabel 
+                                                value="3" 
+                                                control={<Radio />} 
+                                                label="3" 
+                                                labelPlacement="end" 
+                                                name={item[0]}
+                                                onChange={handleCircleRadio}
+                                            />
+                                            <FormControlLabel 
+                                                value="4" 
+                                                control={<Radio />} 
+                                                label="4" 
+                                                labelPlacement="end" 
+                                                name={item[0]}
+                                                onChange={handleCircleRadio}
+                                            />
+                                            <FormControlLabel 
+                                                value="5" 
+                                                control={<Radio />} 
+                                                label="5" 
+                                                labelPlacement="end" 
+                                                name={item[0]}
+                                                onChange={handleCircleRadio}
+                                            />
                                         </RadioGroup>
                                     </FormControl>
                                 </TableRow>
@@ -167,10 +189,10 @@ let TableData = (props) => {
                 <ArtworkTable  displayValues={displayValue} TableData={artwork}/>
                 <Grid ref={componentRef} className={classes.artworkBox}>
                     {
-                        artwork.map(boxItem => {
+                        artwork.map((boxItem,index) => {
                             return (
                                 <DisplayBox 
-                                    key={boxItem[0]}
+                                    key={index*1000 + 1}
                                     id={boxItem[0] -1}
                                     date={date}
                                     Title={boxItem[1]}
@@ -184,20 +206,17 @@ let TableData = (props) => {
                 <Grid item container style={{display: `${displayValue}` }}>
                     <Grid item container className='printButtonContainer'  >
                         <ReactToPrint
-                            xs={8}
                             trigger={() => <button className='printButton'>Print - ARTWORK</button>}
                             content={() => componentRef.current}
                             print={handlePrint}
                         />
                         <ReactToPrint
-                            xs={8}
                             trigger={() => <button className='printButton'>Preview - ARTWORK</button>}
                             content={() => componentRef.current}
                             print={handlePreview}
                         />
                     </Grid>
                 </Grid>
-                
             </Grid>
         </Grid>   
     )

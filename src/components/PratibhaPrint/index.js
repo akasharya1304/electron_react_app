@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-let JdPrint = () => {
+let PratibhaPrint = () => {
     const classes = useStyles();
 
     return (
@@ -31,4 +31,4 @@ let JdPrint = () => {
     )
 }
 
-export default JdPrint;
+export default PratibhaPrint;

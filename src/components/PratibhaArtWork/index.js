@@ -1,34 +1,32 @@
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
-import InsertFullTable from "./InsertFullTable";
+import InsertData from './InsertData';
+
 
 
 const useStyles = makeStyles((theme) => ({
     homeContainer: {
         display: 'flex',
+        height: '100vh',
         position: 'relative',
         left: '65px',
-        height: '100vh',
         width: 'calc(100% - 65px)',
     },
-    printContainer :{
-        display: 'flex',
-        height: '290mm',
-        width: '205mm',
-    }
+    
 }));
 
-let JdPrint = () => {
+let PratibhaArtwork = () => {
     const classes = useStyles();
-
+    
     return (
         <Grid container className={classes.homeContainer}>
             <Grid item container>
-                <InsertFullTable />
+                <InsertData />
             </Grid>
+            
         </Grid>
     )
 }
 
-export default JdPrint;
+export default PratibhaArtwork;

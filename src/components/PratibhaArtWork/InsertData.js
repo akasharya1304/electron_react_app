@@ -1,22 +1,22 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
-import { Button, TextField, Typography } from '@material-ui/core';
+import { Box, Button, FormControl, MenuItem, Select, TextField, Typography } from '@material-ui/core';
+import TableData from './TableData';
 import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
-import CreateTable from './CreateTable';
+
+
 
 
 const useStyles = makeStyles((theme) => ({
     introContainer: {
         display: 'flex',
-        justifyContent: 'flex-start',
         height: '100%',
         width: '100%',
         backgroundColor: '#4472C4'
     },
     reloadButton: {
         display: 'flex',
-        justifyContent: 'center',
         color: 'white',
         margin: '2% 0 0 7% ',
         transform: 'scale(1.2)',
@@ -51,8 +51,7 @@ const useStyles = makeStyles((theme) => ({
         padding: '1%',
         border: '5px dotted #101d8d',
         backgroundColor: '#0370a3',
-        // overflow: 'scroll',
-        // overflowX: 'hidden'
+        scrollbarColor: 'red green'
     },
     fontColor: {
         color: '#FFF',
@@ -77,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-let InsertRawData = (props) => {
+let InsertData = () => {
     const classes = useStyles();
 
     
@@ -85,7 +84,11 @@ let InsertRawData = (props) => {
     const [area , setArea] = useState([]);
     const [data , setData] = useState([]);
 
-    let item = [];
+    const [type, setType] = useState(10);
+
+    const handleChange = (event) => {
+        setType(event.target.value);
+    };
 
     function refreshPage(){
         window.location.reload();
@@ -94,6 +97,7 @@ let InsertRawData = (props) => {
     function handleTextArea(event) {
         const areaValue = event.target.value
         const line = areaValue.split('\n')
+        let item = [];
         for(let i=0 ; i<line.length ; i++){
             if((line[i].split('\t')).length <= 1){
                 i++
@@ -104,7 +108,7 @@ let InsertRawData = (props) => {
         }
 
         for(let i=0; i<item.length ; i++){
-            item[i][15] = '1';
+            item[i][3] = '1';
         }
 
         setArea(line)
@@ -117,13 +121,28 @@ let InsertRawData = (props) => {
 
     return (
         <Grid container className={classes.introContainer}>
-            <Grid item xs={4}>
-            <Button variant='text' className={classes.reloadButton} onClick={refreshPage}>
-                <RefreshRoundedIcon />
-            </Button>
+            <Grid container xs={10} alignItems="center">
+                <Button variant='text' className={classes.reloadButton} onClick={refreshPage}>
+                    <RefreshRoundedIcon />
+                </Button>
+                <Box sx={{ maxWidth: 120 }} className={classes.reloadButton}>
+                    <FormControl fullWidth>
+                        <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={type}
+                        label="Age"
+                        onChange={handleChange}
+                        >
+                        <MenuItem value={10}>Normal</MenuItem>
+                        <MenuItem value={20}>Slash</MenuItem>
+                        <MenuItem value={30}>Word</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Box>
             </Grid>
             <Typography xs={10} variant='h3' component='div' className={classes.heading}>
-                JD POLYBAG PRINTOUT
+                JD POLYBAG ARTWORK (PRATIBHA)
             </Typography>
             <Grid item container className={classes.introInnerContainer}>
                 <Typography variant='h3' component='div' className={classes.title}>
@@ -137,21 +156,18 @@ let InsertRawData = (props) => {
                     className={classes.textArea}
                     inputProps={{className: classes.fontColor}}
                     onChange={handleTextArea} 
-                    
-                    placeholder=' 1	CH324	BLACK	            25	45	80	135	145	175	150	125	65	45	40	45
-                                    2	CH326	MONO PRINT	    15	35	65	105	115	135	115	100	55	40	35	40
-                                    3	CH348	BLACK	            20	30	65	90	130	125	115	95	60	35	30	35
-                                    4	CH353	WHITE	            20	35	80	115	165	165	150	120	75	40	35	40
-                                    5	CH356	ORANGE	    15	35	50	70	95	90	85	70	45	30	35	30
-                                    '
+                    placeholder=' 1	CH324	BLACK 
+                                    2	CH326	MONO PRINT
+                                    3	CH348	BLACK  
+                                    4	CH353	WHITE  '
                 />
                 <Button variant='text' className={classes.button} onClick={handleDataDisplay}>
                     Show Data
                 </Button>
             </Grid>
-            <CreateTable displayValues={displayValue} data={data} />
+            <TableData  displayValues={displayValue} data={data} sizeValue={type}/>
         </Grid>
     )
 }
 
-export default InsertRawData;
+export default InsertData;

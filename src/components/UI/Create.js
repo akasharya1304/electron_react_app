@@ -102,6 +102,11 @@ const useStyles = makeStyles((theme) => ({
 
 let Create = (props) => {
     const classes = useStyles();
+    let fontSizes = '14px';
+
+    if((props.colour).length >= 13) {
+        fontSizes = '12px'
+    }
 
     return (
         <Grid container className={classes.createBox} style={{ borderStyle : `${props.borderStyle}`}}>
@@ -131,7 +136,7 @@ let Create = (props) => {
                         <Typography xs={7} className={classes.createBoxBodyTop}>colour</Typography>
                     </Grid>
                     <Grid item container xs={12} className={classes.createBoxBodyColourContainer}>
-                        <Typography xs={12} className={classes.createBoxBodyColour}>{props.colour}</Typography>
+                        <Typography xs={12} className={classes.createBoxBodyColour} style={{ fontSize: `${fontSizes}` }}>{props.colour}</Typography>
                     </Grid>
                 </Grid>
             </Grid>

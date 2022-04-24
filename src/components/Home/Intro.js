@@ -69,7 +69,7 @@ let Intro = (props) => {
                             className={classes.button}
                             component={Link} 
                             to='/artworkMaker'
-                            onClick={() => {props.onButtonHandle('artworkMaker')}}
+                            onClick={() => {props.onButtonHandle('handleArtworkMakerButton()')}}
                         >   
                             ARTWORK MAKER
                         </Button>
@@ -78,7 +78,7 @@ let Intro = (props) => {
                             className={classes.button}
                             component={Link} 
                             to='/jdPrint'
-                            onClick={() => {props.onButtonHandle('jdPrint')}}
+                            onClick={() => {props.onButtonHandle('handleJdPrintButton()')}}
                         >
                             JD PRINT
                         </Button>

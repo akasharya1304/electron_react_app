@@ -1,13 +1,14 @@
-import { React, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import AutofpsSelectIcon from '@mui/icons-material/AutofpsSelect';
 import PrintRoundedIcon from '@mui/icons-material/PrintRounded';
-import { IconButton } from '@material-ui/core';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import AdfScannerIcon from '@mui/icons-material/AdfScanner';
+import { IconButton, Tooltip } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import { Tooltip } from '@mui/material';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -51,28 +52,47 @@ const useStyles = makeStyles((theme) => ({
 let SideBar = (props) => {
     const classes = useStyles();
 
+    let buttonClicked = props.buttonClickedName
+
+    useEffect(() => {
+        (buttonClicked !== 'Home') ? ((buttonClicked === 'handleJdPrintButton()') ? handleJdPrintButton() : handleArtworkMakerButton()) : handleHomeButton() ;
+    }, [buttonClicked])
+
     const [buttons, setButtons] = useState({
         homeButton : true,
         jdPrintButton : false,
-        artworkMakerButton : false
+        artworkMakerButton : false,
+        pratibhaArtwork: false,
+        printPratibhaButton: false
     })
     
     function handleHomeButton(event) {
         setButtons(() => {
-            return{homeButton : true, jdPrintButton : false, artworkMakerButton : false}
+            return{homeButton : true, jdPrintButton : false, artworkMakerButton : false , pratibhaArtwork: false, printPratibhaButton: false}
         })
     }
     function handleJdPrintButton(event) {
         setButtons(() => {
-            return{homeButton : false, jdPrintButton : true, artworkMakerButton : false}
+            return{homeButton : false, jdPrintButton : true, artworkMakerButton : false, pratibhaArtwork: false, printPratibhaButton: false}
         })
     }
     function handleArtworkMakerButton(event) {
         setButtons(() => {
-            return{homeButton : false, jdPrintButton : false, artworkMakerButton : true}
+            return{homeButton : false, jdPrintButton : false, artworkMakerButton : true, pratibhaArtwork: false, printPratibhaButton: false}
+        })
+    }
+    function handlePratibhaArtworkButton(event) {
+        setButtons(() => {
+            return{homeButton : false, jdPrintButton : false, artworkMakerButton : false, pratibhaArtwork: true, printPratibhaButton: false}
+        })
+    }
+    function handlePrintPratibhaArtworkButton(event) {
+        setButtons(() => {
+            return{homeButton : false, jdPrintButton : false, artworkMakerButton : false, pratibhaArtwork: false, printPratibhaButton: true}
         })
     }
 
+    
     
 
     return (
@@ -95,6 +115,20 @@ let SideBar = (props) => {
                 <Tooltip title={<span className={classes.tooltip}>JD Print</span>} placement="right-start" arrow>
                     <IconButton  onClick={handleJdPrintButton} component={Link} to='/jdPrint' sx={{ displayPrint: 'none' }}>
                         <PrintRoundedIcon className={classes.icon} style={{color: (buttons.jdPrintButton) &&'#FFF'}} sx={{ displayPrint: 'none' }}/>
+                    </IconButton>
+                </Tooltip>    
+            </Grid>
+            <Grid item container  className={classes.iconContainer}>
+                <Tooltip title={<span className={classes.tooltip}>Pratibha Artwork</span>} placement="right-start" arrow>
+                    <IconButton  onClick={handlePratibhaArtworkButton} component={Link} to='/pratibhaArtwork' sx={{ displayPrint: 'none' }}>
+                        <ApartmentIcon className={classes.icon} style={{color: (buttons.pratibhaArtwork) &&'#FFF'}} sx={{ displayPrint: 'none' }}/>
+                    </IconButton>
+                </Tooltip>    
+            </Grid>
+            <Grid item container  className={classes.iconContainer}>
+                <Tooltip title={<span className={classes.tooltip}>Pratibha Print</span>} placement="right-start" arrow>
+                    <IconButton  onClick={handlePrintPratibhaArtworkButton} component={Link} to='/pratibhaPrint' sx={{ displayPrint: 'none' }}>
+                        <AdfScannerIcon className={classes.icon} style={{color: (buttons.printPratibhaButton) &&'#FFF'}} sx={{ displayPrint: 'none' }}/>
                     </IconButton>
                 </Tooltip>    
             </Grid>

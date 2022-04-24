@@ -131,7 +131,7 @@ let InsertData = () => {
                     variant='standard' 
                     InputProps={{ disableUnderline: true }}
                     multiline 
-                    rows={12} 
+                    minRows={12} 
                     className={classes.textArea}
                     inputProps={{className: classes.fontColor}}
                     onChange={handleTextArea} 

@@ -28,11 +28,11 @@ const useStyles = makeStyles((theme) => ({
     createBoxBodyRightContainer: { 
         display: 'flex',
         alignContent : 'center',
-        padding: '0 8% 8% 0'
+        padding: '0 0 0 10%'
     },
     createBoxBodyTopContainer: {
         display: 'flex',
-        padding: '0',
+        padding: '0 0 0 10%',
         justifyContent : 'center',
         height: '24px'
     },
@@ -43,9 +43,9 @@ const useStyles = makeStyles((theme) => ({
     },
     createBoxBodySizesContainer: {
         display: 'flex',
-        padding: '0 5% 0 22%',
-        margin: '0 0 1% 0',
-        justifyContent : 'space-between',
+        padding: '0 0 0 24%',
+        margin: '0 0 2% 0',
+        // justifyContent : 'space-between',
     },
     createBoxBodySizes: {
         lineHeight: '14px',
@@ -105,7 +105,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-let CreatePrint = (props) => {
+let CreateSlashPratibhaPrint = (props) => {
     const classes = useStyles();
     let letterSpace = '0.00938em';
     let fontSizes = '14px';
@@ -125,24 +125,24 @@ let CreatePrint = (props) => {
                 <Typography xs={5} className={classes.createBoxTitle}>{props.title}</Typography>
             </Grid>
             <Grid item container className={classes.createBoxBodyContainer}>
-                <Grid item container xs={5}>
-                    <Grid item container xs={9} className={classes.createBoxBodyTopContainer}>
-                        <Typography xs={7} className={classes.createBoxBodyTop}>size</Typography>
+                <Grid item container xs={6}>
+                    <Grid item container xs={12} className={classes.createBoxBodyTopContainer}>
+                        <Typography xs={7} className={classes.createBoxBodyTop} style={{ marginRight: '30px' }}>size</Typography>
                     </Grid>
-                    <Grid item container xs={9} className={classes.createBoxBodySizesContainer}>
-                        <Typography xs={5} className={classes.createBoxBodySizes}>uk</Typography>
-                        <Typography xs={5} className={classes.createBoxBodySizesNumber}>{props.size_uk}</Typography>
+                    <Grid item container xs={12} className={classes.createBoxBodySizesContainer}>
+                        <Typography xs={6} className={classes.createBoxBodySizes}>UK</Typography>
+                        <Typography xs={6} className={classes.createBoxBodySizesNumber} style={{ paddingLeft: '3px' }}>{props.size_uk}/{props.size_uk + 2}</Typography>
                     </Grid>
-                    <Grid item container xs={9} className={classes.createBoxBodySizesContainer}>
-                        <Typography xs={5} className={classes.createBoxBodySizes}>eu</Typography>
-                        <Typography xs={5} className={classes.createBoxBodySizesNumber}>{props.size_eu}</Typography>
+                    <Grid item container xs={12} className={classes.createBoxBodySizesContainer}>
+                        <Typography xs={6} className={classes.createBoxBodySizes}>US</Typography>
+                        <Typography xs={6} className={classes.createBoxBodySizesNumber} style={{paddingLeft:props.us_styles}}>{props.size_us}/{props.size_us + 2}</Typography>
                     </Grid>
-                    <Grid item container xs={9} className={classes.createBoxBodySizesContainer}>
-                        <Typography xs={5} className={classes.createBoxBodySizes}>us</Typography>
-                        <Typography xs={5} className={classes.createBoxBodySizesNumber} style={{paddingRight:props.us_styles}}>{props.size_us}</Typography>
+                    <Grid item container xs={12} className={classes.createBoxBodySizesContainer}>
+                        <Typography xs={6} className={classes.createBoxBodySizes}>EU</Typography>
+                        <Typography xs={6} className={classes.createBoxBodySizesNumber} style={{ paddingLeft: '3px' }}>{props.size_eu}/{props.size_eu + 2}</Typography>
                     </Grid>
                 </Grid>
-                <Grid item container xs={7} className={classes.createBoxBodyRightContainer}>
+                <Grid item container xs={6} className={classes.createBoxBodyRightContainer}>
                     <Grid item container xs={12} className={classes.createBoxBodyTopContainer}>
                         <Typography xs={7} className={classes.createBoxBodyTop}>colour</Typography>
                     </Grid>
@@ -163,4 +163,4 @@ let CreatePrint = (props) => {
     )
 }
 
-export default CreatePrint;
+export default CreateSlashPratibhaPrint;

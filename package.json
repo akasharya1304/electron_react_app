@@ -1,12 +1,21 @@
 {
   "name": "office-app",
-  "version": "1.0.1",
-  "description": "App for making JD Polybag Artwork & Printout",
-  "author": "akash13arya",
+  "version": "1.1.4",
+  "description": "JD Polybag Artwork & Printout",
+  "author": "AkashKumar",
   "build": {
     "appId": "office.app.electron-cra",
     "win": {
-      "icon": "build/icon.png"
+      "icon": "build/icon.png",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ]
     },
     "files": [
       "build/**/*",
@@ -38,7 +47,7 @@
   "main": "public/electron.js",
   "homepage": "./",
   "scripts": {
-    "react-start": "react-scripts start",
+    "react-start": "set PORT=3001 && react-scripts start",
     "react-build": "react-scripts build",
     "react-test": "react-scripts test",
     "react-eject": "react-scripts eject",
@@ -46,7 +55,7 @@
     "electron-build": "electron-builder",
     "release": "npm run react-build && electron-builder --publish=always",
     "build": "npm run react-build && npm run electron-build",
-    "electron-start": "wait-on tcp:3000 && electron .",
+    "electron-start": "wait-on tcp:3001 && electron .",
     "electron": "concurrently -k \"cross-env BROWSER=none npm run react-start\" \"npm run electron-start\""
   },
   "eslintConfig": {

@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { Button, FormControl, FormControlLabel, Paper,Radio,RadioGroup,Table, TableBody, TableCell, TableContainer, TableHead, TableRow,} from '@material-ui/core';
 
-import TableShow from '../UI/TableShow';
+import TableShow from './TableShow';
 import PrintPage from './PrintPage';
 
 
@@ -82,10 +82,10 @@ let CreateTable = (props) => {
         const {name , value} = event.target;
         console.log(name, value)
         for(let i=0; i<artworkData.length; i++) {
-            if(artworkData[i].length <= 16){
+            if(artworkData[i].length <= 15){
                 if(i === name-1){
-                    if(artworkData[name-1][15] !== value){
-                        artworkData[name-1][15] = value;
+                    if(artworkData[name-1][14] !== value){
+                        artworkData[name-1][14] = value;
                     }
                 }
             }
@@ -108,7 +108,6 @@ let CreateTable = (props) => {
                                 <TableCell>S.No.</TableCell>
                                 <TableCell align='center'>STYLE</TableCell>
                                 <TableCell align='center'>COLOUR</TableCell>
-                                <TableCell align='center'>10</TableCell>
                                 <TableCell align='center'>12</TableCell>
                                 <TableCell align='center'>14</TableCell>
                                 <TableCell align='center'>16</TableCell>
@@ -160,6 +159,30 @@ let CreateTable = (props) => {
                                                 name={item[0]}
                                                 onChange={handleCircleRadio}
                                             />
+                                            <FormControlLabel 
+                                                value="3" 
+                                                control={<Radio />} 
+                                                label="3" 
+                                                labelPlacement="end" 
+                                                name={item[0]}
+                                                onChange={handleCircleRadio}
+                                            />
+                                            <FormControlLabel 
+                                                value="4" 
+                                                control={<Radio />} 
+                                                label="4" 
+                                                labelPlacement="end" 
+                                                name={item[0]}
+                                                onChange={handleCircleRadio}
+                                            />
+                                            <FormControlLabel 
+                                                value="5" 
+                                                control={<Radio />} 
+                                                label="5" 
+                                                labelPlacement="end" 
+                                                name={item[0]}
+                                                onChange={handleCircleRadio}
+                                            />
                                         </RadioGroup>
                                     </FormControl>
                                 </TableRow>
@@ -186,7 +209,8 @@ let CreateTable = (props) => {
                                     key={PrintPageItem[0]*10000 + 1000}
                                     title={PrintPageItem[1]}
                                     colour={PrintPageItem[2]}
-                                    circle={PrintPageItem[15]}
+                                    circle={PrintPageItem[14]}
+                                    sizeValue={props.sizeValue}
                                 />
                             )
                         })

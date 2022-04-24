@@ -6,16 +6,14 @@ import { Typography } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
     createBox: {
         display: 'flex',
-        alignContent: 'flex-start',
-        width: '50mm',
-        height: '31.3mm',
-        margin: '0 0',
-        // border: '1px solid red'
+        width: '180px',
+        height: '120px',
+        border: '1px solid red'
     },
     createBoxTitleContainer: {
         display: 'flex',
         justifyContent : 'center',
-        height: '22px'
+        height: '30px'
     },
     createBoxTitle: {
         fontSize: '22px',
@@ -24,50 +22,45 @@ const useStyles = makeStyles((theme) => ({
     },
     createBoxBodyContainer: {
         display: 'flex',
+        height: '60px'
     },
-    createBoxBodyRightContainer: { 
+    createBoxBodyRightContainer: {
         display: 'flex',
-        alignContent : 'center',
-        padding: '0 8% 8% 0'
+        alignContent : 'flex-start',
     },
     createBoxBodyTopContainer: {
         display: 'flex',
-        padding: '0',
+        padding: '0 0 0 10%',
         justifyContent : 'center',
-        height: '24px'
+        height: '21px'
     },
     createBoxBodyTop: {
-        fontSize: '18px',
+        fontSize: '17px',
         fontFamily: " 'Calibri', sans-serif ",
         fontWeight: 'bolder'
     },
     createBoxBodySizesContainer: {
         display: 'flex',
-        padding: '0 5% 0 22%',
-        margin: '0 0 1% 0',
-        justifyContent : 'space-between',
+        padding: '0 0 0 24%',
+        margin: '0 0 2% 0',
+        // justifyContent : 'space-between',
+        height: '13px'
     },
     createBoxBodySizes: {
-        lineHeight: '14px',
-        fontSize: '12px',
+        lineHeight: '13px',
+        fontSize: '13px',
         fontFamily: " 'Calibri', sans-serif ",
-        fontWeight: '600',
-    },
-    createBoxBodySizesNumber: {
-        lineHeight: '14px',
-        fontSize: '14px',
-        fontFamily: " 'Calibri', sans-serif ",
-        fontWeight: '600',
+        fontWeight: 'bolder',
     },
     createBoxBodyColourContainer: {
         display: 'flex',
-        padding: '0 0 0 0',
+        padding: '0 0 0 10%',
         justifyContent : 'center',
         textTransform: 'uppercase',
         height: '16px'
     },
     createBoxBodyColour: {
-        lineHeight: '10px',
+        lineHeight: '14px',
         fontSize: '14px',
         fontFamily: " 'Calibri', sans-serif ",
         fontWeight: 'bolder',
@@ -79,45 +72,41 @@ const useStyles = makeStyles((theme) => ({
     },
     createBoxFooterCircleContainer: {
         display: 'flex',
-        padding: '1% 7% 3% 0', 
+        padding: '0 5% 0 0',
         justifyContent : 'center',
-        alignContent : 'flex-start',
+        alignContent : 'center',
     },
     createBoxFooterCircle: {
-        fontSize: '9.2px',
-        width: '13px',
-        height: '13px',
+        fontSize: '9px',
+        width: '12px',
+        height: '12px',
         fontFamily: " 'Arial', sans-serif ",
         fontWeight: 'bolder',
-        border: '1.5px solid #000',
+        border: '1px solid #000',
         borderRadius: '25px',
-        padding: '0 4% 1% 4%'
+        padding: '1% 4%'
     },
     createBoxFooterNumberContainer: {
         display: 'flex',
-        padding: '0 0 8% 2%',
+        padding: '0 7% 0 0',
+        justifyContent : 'end',
     },
     createBoxFooterNumber: {
+        lineHeight: '24px',
         fontSize: '12px',
         wordSpacing: '20px',
         fontFamily: " 'Arial', sans-serif ",
-        fontWeight: '700',
+        fontWeight: '900',
     }
 }));
 
-let CreatePrint = (props) => {
+let PratibhaLetterCreate = (props) => {
     const classes = useStyles();
-    let letterSpace = '0.00938em';
     let fontSizes = '14px';
 
-    if((props.colour).length <= 6) {
-        letterSpace = '0.05em';
-        fontSizes = '15px'
-    }
-
-    if((props.colour).length >= 13) {
-        fontSizes = '12px'
-    }
+    // if((props.colour).length >= 13) {
+    //     fontSizes = '12px'
+    // }
 
     return (
         <Grid container className={classes.createBox} style={{ borderStyle : `${props.borderStyle}`}}>
@@ -130,16 +119,16 @@ let CreatePrint = (props) => {
                         <Typography xs={7} className={classes.createBoxBodyTop}>size</Typography>
                     </Grid>
                     <Grid item container xs={9} className={classes.createBoxBodySizesContainer}>
-                        <Typography xs={5} className={classes.createBoxBodySizes}>uk</Typography>
-                        <Typography xs={5} className={classes.createBoxBodySizesNumber}>{props.size_uk}</Typography>
+                        <Typography xs={5} className={classes.createBoxBodySizes}>UK</Typography>
+                        <Typography xs={5} className={classes.createBoxBodySizes} style={{ paddingLeft: '6px' }}>{props.size_uk}</Typography>
                     </Grid>
                     <Grid item container xs={9} className={classes.createBoxBodySizesContainer}>
-                        <Typography xs={5} className={classes.createBoxBodySizes}>eu</Typography>
-                        <Typography xs={5} className={classes.createBoxBodySizesNumber}>{props.size_eu}</Typography>
+                        <Typography xs={5} className={classes.createBoxBodySizes}>US</Typography>
+                        <Typography xs={5} className={classes.createBoxBodySizes} style={{ paddingLeft: '7px' }}>{props.size_us}</Typography>
                     </Grid>
                     <Grid item container xs={9} className={classes.createBoxBodySizesContainer}>
-                        <Typography xs={5} className={classes.createBoxBodySizes}>us</Typography>
-                        <Typography xs={5} className={classes.createBoxBodySizesNumber} style={{paddingRight:props.us_styles}}>{props.size_us}</Typography>
+                        <Typography xs={5} className={classes.createBoxBodySizes}>EU</Typography>
+                        <Typography xs={5} className={classes.createBoxBodySizes} style={{ paddingLeft: '7px' }}>{props.size_eu}</Typography>
                     </Grid>
                 </Grid>
                 <Grid item container xs={7} className={classes.createBoxBodyRightContainer}>
@@ -147,7 +136,7 @@ let CreatePrint = (props) => {
                         <Typography xs={7} className={classes.createBoxBodyTop}>colour</Typography>
                     </Grid>
                     <Grid item container xs={12} className={classes.createBoxBodyColourContainer}>
-                        <Typography xs={12} style={{ letterSpacing: `${letterSpace}`, fontSize: `${fontSizes}` }} className={classes.createBoxBodyColour}>{props.colour}</Typography>
+                        <Typography xs={12} className={classes.createBoxBodyColour} style={{ fontSize: `${fontSizes}` }}>{props.colour}</Typography>
                     </Grid>
                 </Grid>
             </Grid>
@@ -163,4 +152,4 @@ let CreatePrint = (props) => {
     )
 }
 
-export default CreatePrint;
+export default PratibhaLetterCreate;

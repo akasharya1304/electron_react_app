@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
-import { Button, TextField, Typography } from '@material-ui/core';
+import { Box, Button, FormControl, MenuItem, Select, TextField, Typography } from '@material-ui/core';
 import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
 import CreateTable from './CreateTable';
 
@@ -84,8 +84,13 @@ let InsertRawData = (props) => {
     const [displayValue , setDisplayValue] = useState('none');
     const [area , setArea] = useState([]);
     const [data , setData] = useState([]);
-
     let item = [];
+
+    const [type, setType] = useState(10);
+
+    const handleChange = (event) => {
+        setType(event.target.value);
+    };
 
     function refreshPage(){
         window.location.reload();
@@ -104,7 +109,7 @@ let InsertRawData = (props) => {
         }
 
         for(let i=0; i<item.length ; i++){
-            item[i][15] = '1';
+            item[i][14] = '1';
         }
 
         setArea(line)
@@ -118,12 +123,27 @@ let InsertRawData = (props) => {
     return (
         <Grid container className={classes.introContainer}>
             <Grid item xs={4}>
-            <Button variant='text' className={classes.reloadButton} onClick={refreshPage}>
-                <RefreshRoundedIcon />
-            </Button>
+                <Button variant='text' className={classes.reloadButton} onClick={refreshPage}>
+                    <RefreshRoundedIcon />
+                </Button>
+                <Box sx={{ maxWidth: 120 }} className={classes.reloadButton}>
+                    <FormControl fullWidth>
+                        <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={type}
+                        label="Age"
+                        onChange={handleChange}
+                        >
+                        <MenuItem value={10}>Normal</MenuItem>
+                        <MenuItem value={20}>Slash</MenuItem>
+                        <MenuItem value={30}>Word</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Box>
             </Grid>
             <Typography xs={10} variant='h3' component='div' className={classes.heading}>
-                JD POLYBAG PRINTOUT
+                JD POLYBAG PRINTOUT (Pratibha)
             </Typography>
             <Grid item container className={classes.introInnerContainer}>
                 <Typography variant='h3' component='div' className={classes.title}>
@@ -149,7 +169,7 @@ let InsertRawData = (props) => {
                     Show Data
                 </Button>
             </Grid>
-            <CreateTable displayValues={displayValue} data={data} />
+            <CreateTable displayValues={displayValue} data={data} sizeValue={type}/>
         </Grid>
     )
 }

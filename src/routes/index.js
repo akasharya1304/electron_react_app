@@ -8,6 +8,8 @@ import Home from "../components/Home";
 import JdPrint from "../components/JdPrint";
 import ArtworkMaker from "../components/ArtworkMaker"
 import SideBar from "../components/SideBar";
+import PratibhaArtwork from "../components/PratibhaArtWork";
+import PratibhaPrint from "../components/PratibhaPrint";
 
 
 
@@ -25,12 +27,14 @@ let MainRouter = () => {
     return (
         <Router>
             <div>
-                <SideBar buttonDataName={clickButton} />
+                <SideBar buttonClickedName={clickButton} />
             </div>
             <Routes>
                 <Route exact path="/" element={<Home onButton={buttonClick} />} />
                 <Route exact path="/jdPrint" element={<JdPrint />} />
                 <Route exact path="/artworkMaker" element={<ArtworkMaker />} />
+                <Route exact path="/pratibhaArtwork" element={<PratibhaArtwork />} />
+                <Route exact path="/pratibhaPrint" element={<PratibhaPrint />} />
             </Routes>
         </Router>
     )

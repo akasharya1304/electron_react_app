@@ -1,5 +1,5 @@
 const { app, ipcMain, BrowserWindow, Menu} = require('electron')
-const { autoUpdater } = require('electron-updater');
+// const { autoUpdater } = require('electron-updater');
 const fs = require('fs')
 const path = require('path')
 const os = require('os')
@@ -24,9 +24,8 @@ function createWindow () {
 
   //load the index.html from a url
   win.loadURL(
-      isDev?  'http://localhost:3000' : `file://${path.join(__dirname, "../build/index.html")}`
-      );
-    // win.loadURL(`file://${__dirname}/index.html`);
+    isDev?  'http://localhost:3001' : `file://${path.join(__dirname, "../build/index.html")}`
+  );
 
   // Open the DevTools.
   if(isDev){
@@ -95,10 +94,10 @@ function createWindow () {
         label: 'View',
         submenu: [
             { role: 'reload' },
-            // { role: 'forceReload' },
-            // { role: 'toggleDevTools',
-              // accelerator: 'F12'
-            // },
+            { role: 'forceReload' },
+            { role: 'toggleDevTools',
+              accelerator: 'F12'
+            },
             { type: 'separator' },
             { role: 'resetZoom' },
             { role: 'zoomIn' },
@@ -141,9 +140,9 @@ function createWindow () {
   const mainMenu = Menu.buildFromTemplate(menuTemplate);
   Menu.setApplicationMenu(mainMenu)
 
-  win.once('ready-to-show', () => {
-    autoUpdater.checkForUpdatesAndNotify();
-  })
+  // win.once('ready-to-show', () => {
+  //   autoUpdater.checkForUpdatesAndNotify();
+  // })
 
   
 }
@@ -187,6 +186,20 @@ let previewPageOptions  = {
   copies: 1,
   pageSize: 'A4',
 }
+let printPageOptions  = {
+  silent: false,
+  printBackground: false,
+  color: false,
+  margins: {
+    marginType: 'printableArea',
+  },
+  landscape: false,
+  pagesPerSheet: 1,
+  scaleFactor: 100,
+  collate: false,
+  copies: 1,
+  pageSize: 'A4',
+}
 
 let previewFullOptions  = {
   silent: false,
@@ -217,6 +230,16 @@ let printOptions  = {
   copies: 1,
   pageSize: 'A4',
 }
+let previewOptions  = {
+  marginsType: 0,
+  printBackground: true,
+  pagesPerSheet: 1,
+  printSelectionOnly: false,
+  landscape: true,
+  pageSize: 'A4',
+  scaleFactor: 100
+}
+
 
 //handle print
 ipcMain.handle('printComponent', (event, url) => {
@@ -241,7 +264,7 @@ ipcMain.handle('previewComponent', (event, url) => {
   win.loadURL(url);
  
   win.webContents.once('did-finish-load', () => {
-   win.webContents.printToPDF(printOptions).then((data) => {
+   win.webContents.printToPDF(previewOptions).then((data) => {
      let buf = Buffer.from(data);
      var data = buf.toString('base64');
      let url = 'data:application/pdf;base64,' + data;
@@ -287,7 +310,7 @@ ipcMain.handle('previewTableComponent', (event, url) => {
     });
   });
   return 'shown preview window';
- });
+});
 
 
 //handle Preview Page
@@ -315,8 +338,36 @@ ipcMain.handle('previewPageComponent', (event, url) => {
     });
   });
   return 'shown preview window';
- });
+});
+
+
+//handle print
+ipcMain.handle('printPageComponent', (event, url) => {
+  console.log('we entered in main process for printing')
+  let win = new BrowserWindow({ show: false });
+ 
+  win.loadURL(url);
+ 
+  win.webContents.on('did-finish-load', () => {
+   win.webContents.print(printPageOptions, (success, failureReason) => {
+    console.log('Print Initiated in Main...');
+    if (!success) console.log(failureReason);
+   });
+  });
+  return 'shown print dialog';
+});
 
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+
+// package.json win inside
+// "target": [
+//   {
+//     "target": "nsis",
+//     "arch": [
+//       "ia32"
+//     ]
+//   }
+// ]

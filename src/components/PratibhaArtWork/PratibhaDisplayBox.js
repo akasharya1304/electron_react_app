@@ -2,7 +2,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
 import { Typography } from '@material-ui/core';
-import Create from './Create';
+import PratibhaCreate from './PratibhaCreate';
+import PratibhaSlashCreate from './PratibhaSlashCreate';
+import PratibhaLetterCreate from './PratibhaLetterCreate';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -68,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-let DisplayBox = (props) => {
+let PratibhaDisplayBox = (props) => {
     const classes = useStyles();
 
     return (
@@ -81,17 +83,9 @@ let DisplayBox = (props) => {
                 <Grid item container xs= {12} className={classes.displayTitleContainer}>
                     <Typography xs={12} className={classes.displayTitle}># {props.Title} - {props.colour}</Typography>
                 </Grid>
-                <Grid item container xs= {12} className={classes.displayArtworkContainer}>
-                    <Create 
-                        title={props.Title}
-                        size_uk='10'
-                        size_eu='38'
-                        size_us='6'
-                        us_styles='3px'
-                        colour={props.colour}
-                        circle={props.circle}
-                    />
-                    <Create 
+                {props.sizeValue === 10 ? 
+                <Grid item container xs= {12} className={classes.displayArtworkContainer}> 
+                    <PratibhaCreate 
                         title={props.Title}
                         size_uk='12'
                         size_eu='40'
@@ -100,7 +94,7 @@ let DisplayBox = (props) => {
                         colour={props.colour}
                         circle={props.circle}
                     />
-                    <Create 
+                    <PratibhaCreate 
                         title={props.Title}
                         size_uk='14'
                         size_eu='42'
@@ -108,7 +102,7 @@ let DisplayBox = (props) => {
                         colour={props.colour}
                         circle={props.circle}
                     />
-                    <Create 
+                    <PratibhaCreate 
                         title={props.Title}
                         size_uk='16'
                         size_eu='44'
@@ -116,7 +110,7 @@ let DisplayBox = (props) => {
                         colour={props.colour}
                         circle={props.circle}
                     />
-                    <Create 
+                    <PratibhaCreate 
                         title={props.Title}
                         size_uk='18'
                         size_eu='46'
@@ -124,7 +118,7 @@ let DisplayBox = (props) => {
                         colour={props.colour}
                         circle={props.circle}
                     />
-                    <Create 
+                    <PratibhaCreate 
                         title={props.Title}
                         size_uk='20'
                         size_eu='48'
@@ -132,7 +126,7 @@ let DisplayBox = (props) => {
                         colour={props.colour}
                         circle={props.circle}
                     />
-                    <Create 
+                    <PratibhaCreate 
                         title={props.Title}
                         size_uk='22'
                         size_eu='50'
@@ -140,7 +134,7 @@ let DisplayBox = (props) => {
                         colour={props.colour}
                         circle={props.circle}
                     />
-                    <Create 
+                    <PratibhaCreate 
                         title={props.Title}
                         size_uk='24'
                         size_eu='52'
@@ -148,7 +142,7 @@ let DisplayBox = (props) => {
                         colour={props.colour}
                         circle={props.circle}
                     />
-                    <Create 
+                    <PratibhaCreate 
                         title={props.Title}
                         size_uk='26'
                         size_eu='54'
@@ -156,7 +150,7 @@ let DisplayBox = (props) => {
                         colour={props.colour}
                         circle={props.circle}
                     />
-                    <Create 
+                    <PratibhaCreate 
                         title={props.Title}
                         size_uk='28'
                         size_eu='56'
@@ -164,7 +158,7 @@ let DisplayBox = (props) => {
                         colour={props.colour}
                         circle={props.circle}
                     />
-                    <Create 
+                    <PratibhaCreate 
                         title={props.Title}
                         size_uk='30'
                         size_eu='58'
@@ -172,7 +166,7 @@ let DisplayBox = (props) => {
                         colour={props.colour}
                         circle={props.circle}
                     />
-                    <Create 
+                    <PratibhaCreate 
                         title={props.Title}
                         size_uk='32'
                         size_eu='60'
@@ -181,9 +175,95 @@ let DisplayBox = (props) => {
                         circle={props.circle}
                     />
                 </Grid>
+            :
+            props.sizeValue === 20 ?
+            <Grid item container className={classes.displayArtworkContainer} style={{ height: '241px', width: '543px' }}> 
+                    <PratibhaSlashCreate
+                        title={props.Title}
+                        size_uk='12/14'
+                        size_us='8/10'
+                        size_eu='40/42'
+                        us_styles='6px'
+                        colour={props.colour}
+                        circle={props.circle}
+                    />
+                    <PratibhaSlashCreate 
+                        title={props.Title}
+                        size_uk='16/18'
+                        size_us='12/14'
+                        size_eu='44/46'
+                        us_styles='3px'
+                        colour={props.colour}
+                        circle={props.circle}
+                    />
+                    <PratibhaSlashCreate
+                        title={props.Title}
+                        size_uk='20/22'
+                        size_us='16/18'
+                        size_eu='48/50'
+                        us_styles='3px'
+                        colour={props.colour}
+                        circle={props.circle}
+                    />
+                    <PratibhaSlashCreate
+                        title={props.Title}
+                        size_uk='24/26'
+                        size_us='20/22'
+                        size_eu='52/54'
+                        us_styles='3px'
+                        colour={props.colour}
+                        circle={props.circle}
+                    />
+                    <PratibhaSlashCreate 
+                        title={props.Title}
+                        size_uk='28/30'
+                        size_us='24/26'
+                        size_eu='56/58'
+                        us_styles='3px'
+                        colour={props.colour}
+                        circle={props.circle}
+                    />
+                    <PratibhaSlashCreate 
+                        title={props.Title}
+                        size_uk='32/34'
+                        size_us='28/30'
+                        size_eu='60/62'
+                        us_styles='3px'
+                        colour={props.colour}
+                        circle={props.circle}
+                    />
+            </Grid>
+            :
+            <Grid item container className={classes.displayArtworkContainer} style={{ height: '121px', width: '543px' }}> 
+                    <PratibhaLetterCreate
+                        title={props.Title}
+                        size_uk='S'
+                        size_us='S'
+                        size_eu='S'
+                        colour={props.colour}
+                        circle={props.circle}
+                    />
+                    <PratibhaLetterCreate 
+                        title={props.Title}
+                        size_uk='M'
+                        size_us='M'
+                        size_eu='M'
+                        colour={props.colour}
+                        circle={props.circle}
+                    />
+                    <PratibhaLetterCreate 
+                        title={props.Title}
+                        size_uk='L'
+                        size_us='L'
+                        size_eu='L'
+                        colour={props.colour}
+                        circle={props.circle}
+                    />
+            </Grid>
+            }
             </Grid>
         // </Grid>
     )
 }
 
-export default DisplayBox;
+export default PratibhaDisplayBox;
