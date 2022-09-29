@@ -85,6 +85,15 @@ let PratibhaDisplayBox = (props) => {
                 </Grid>
                 {props.sizeValue === 10 ? 
                 <Grid item container xs= {12} className={classes.displayArtworkContainer}> 
+                <PratibhaCreate 
+                        title={props.Title}
+                        size_uk='10'
+                        size_eu='38'
+                        size_us='6'
+                        us_styles='3px'
+                        colour={props.colour}
+                        circle={props.circle}
+                    />
                     <PratibhaCreate 
                         title={props.Title}
                         size_uk='12'
@@ -178,6 +187,15 @@ let PratibhaDisplayBox = (props) => {
             :
             props.sizeValue === 20 ?
             <Grid item container className={classes.displayArtworkContainer} style={{ height: '241px', width: '543px' }}> 
+            <PratibhaSlashCreate
+                        title={props.Title}
+                        size_uk='8/10'
+                        size_us='4/6'
+                        size_eu='36/38'
+                        us_styles='6px'
+                        colour={props.colour}
+                        circle={props.circle}
+                    />
                     <PratibhaSlashCreate
                         title={props.Title}
                         size_uk='12/14'

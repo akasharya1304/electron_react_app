@@ -82,10 +82,10 @@ let CreateTable = (props) => {
         const {name , value} = event.target;
         console.log(name, value)
         for(let i=0; i<artworkData.length; i++) {
-            if(artworkData[i].length <= 15){
+            if(artworkData[i].length <= 16){
                 if(i === name-1){
-                    if(artworkData[name-1][14] !== value){
-                        artworkData[name-1][14] = value;
+                    if(artworkData[name-1][15] !== value){
+                        artworkData[name-1][15] = value;
                     }
                 }
             }
@@ -108,6 +108,7 @@ let CreateTable = (props) => {
                                 <TableCell>S.No.</TableCell>
                                 <TableCell align='center'>STYLE</TableCell>
                                 <TableCell align='center'>COLOUR</TableCell>
+                                <TableCell align='center'>10</TableCell>
                                 <TableCell align='center'>12</TableCell>
                                 <TableCell align='center'>14</TableCell>
                                 <TableCell align='center'>16</TableCell>
@@ -209,7 +210,7 @@ let CreateTable = (props) => {
                                     key={PrintPageItem[0]*10000 + 1000}
                                     title={PrintPageItem[1]}
                                     colour={PrintPageItem[2]}
-                                    circle={PrintPageItem[14]}
+                                    circle={PrintPageItem[15]}
                                     sizeValue={props.sizeValue}
                                 />
                             )

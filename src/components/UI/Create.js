@@ -120,7 +120,7 @@ let Create = (props) => {
                     </Grid>
                     <Grid item container xs={9} className={classes.createBoxBodySizesContainer}>
                         <Typography xs={5} className={classes.createBoxBodySizes}>uk</Typography>
-                        <Typography xs={5} className={classes.createBoxBodySizes}>{props.size_uk}</Typography>
+                        <Typography xs={5} className={classes.createBoxBodySizes} style={{paddingRight:props.uk_styles}}>{props.size_uk}</Typography>
                     </Grid>
                     <Grid item container xs={9} className={classes.createBoxBodySizesContainer}>
                         <Typography xs={5} className={classes.createBoxBodySizes}>eu</Typography>

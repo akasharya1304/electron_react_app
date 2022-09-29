@@ -131,15 +131,15 @@ let CreateLetterPratibhaPrint = (props) => {
                     </Grid>
                     <Grid item container xs={9} className={classes.createBoxBodySizesContainer}>
                         <Typography xs={5} className={classes.createBoxBodySizes}>UK</Typography>
-                        <Typography xs={5} className={classes.createBoxBodySizesNumber}>{props.size_uk}</Typography>
+                        <Typography xs={5} className={classes.createBoxBodySizesNumber}style={{ paddingRight:props.page === 2 ? '5px' : '8px' }}>{props.size_uk}</Typography>
                     </Grid>
                     <Grid item container xs={9} className={classes.createBoxBodySizesContainer}>
                         <Typography xs={5} className={classes.createBoxBodySizes}>US</Typography>
-                        <Typography xs={5} className={classes.createBoxBodySizesNumber} style={{paddingRight:props.us_styles}}>{props.size_us}</Typography>
+                        <Typography xs={5} className={classes.createBoxBodySizesNumber}style={{ paddingRight:props.page === 2 ? '5px' : '8px' }}>{props.size_us}</Typography>
                     </Grid>
                     <Grid item container xs={9} className={classes.createBoxBodySizesContainer}>
                         <Typography xs={5} className={classes.createBoxBodySizes}>EU</Typography>
-                        <Typography xs={5} className={classes.createBoxBodySizesNumber}>{props.size_eu}</Typography>
+                        <Typography xs={5} className={classes.createBoxBodySizesNumber}style={{ paddingRight:props.page === 2 ? '5px' : '8px' }}>{props.size_eu}</Typography>
                     </Grid>
                 </Grid>
                 <Grid item container xs={7} className={classes.createBoxBodyRightContainer}>

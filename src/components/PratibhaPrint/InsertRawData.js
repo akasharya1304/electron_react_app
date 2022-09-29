@@ -109,7 +109,7 @@ let InsertRawData = (props) => {
         }
 
         for(let i=0; i<item.length ; i++){
-            item[i][14] = '1';
+            item[i][15] = '1';
         }
 
         setArea(line)

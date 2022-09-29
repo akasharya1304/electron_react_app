@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     createBoxBodyRightContainer: { 
         display: 'flex',
         alignContent : 'center',
-        padding: '0 0 0 10%'
+        padding: '0 10% 0 0'
     },
     createBoxBodyTopContainer: {
         display: 'flex',
@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
     },
     createBoxFooterCircleContainer: {
         display: 'flex',
-        padding: '1% 7% 3% 0', 
+        padding: '1% 0 3% 0', 
         justifyContent : 'center',
         alignContent : 'flex-start',
     },
@@ -115,7 +115,7 @@ let CreateSlashPratibhaPrint = (props) => {
         fontSizes = '15px'
     }
 
-    if((props.colour).length >= 13) {
+    if((props.colour).length >= 11) {
         fontSizes = '12px'
     }
 
@@ -131,7 +131,7 @@ let CreateSlashPratibhaPrint = (props) => {
                     </Grid>
                     <Grid item container xs={12} className={classes.createBoxBodySizesContainer}>
                         <Typography xs={6} className={classes.createBoxBodySizes}>UK</Typography>
-                        <Typography xs={6} className={classes.createBoxBodySizesNumber} style={{ paddingLeft: '3px' }}>{props.size_uk}/{props.size_uk + 2}</Typography>
+                        <Typography xs={6} className={classes.createBoxBodySizesNumber} style={{ paddingLeft: '6px' }}>{props.size_uk}/{props.size_uk + 2}</Typography>
                     </Grid>
                     <Grid item container xs={12} className={classes.createBoxBodySizesContainer}>
                         <Typography xs={6} className={classes.createBoxBodySizes}>US</Typography>
@@ -139,7 +139,7 @@ let CreateSlashPratibhaPrint = (props) => {
                     </Grid>
                     <Grid item container xs={12} className={classes.createBoxBodySizesContainer}>
                         <Typography xs={6} className={classes.createBoxBodySizes}>EU</Typography>
-                        <Typography xs={6} className={classes.createBoxBodySizesNumber} style={{ paddingLeft: '3px' }}>{props.size_eu}/{props.size_eu + 2}</Typography>
+                        <Typography xs={6} className={classes.createBoxBodySizesNumber} style={{ paddingLeft: '6px' }}>{props.size_eu}/{props.size_eu + 2}</Typography>
                     </Grid>
                 </Grid>
                 <Grid item container xs={6} className={classes.createBoxBodyRightContainer}>

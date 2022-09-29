@@ -86,10 +86,10 @@ let PrintPage = (props) => {
                         <CreatePratibhaPrint 
                             key={index*100}
                             title={props.title}
-                            size_uk={(page+5)*2}
-                            size_us={(page+3)*2}
-                            size_eu={(page+19)*2}
-                            us_styles={page<2? '3px': '0'}
+                            size_uk={(page+4)*2}
+                            size_us={(page+2)*2}
+                            size_eu={(page+18)*2}
+                            us_styles={page<3? '3px': '0'}
                             colour={props.colour}
                             circle={props.circle}
                         />
@@ -115,7 +115,7 @@ let PrintPage = (props) => {
             </Grid>
             <Grid item container className={classes.paginationContainer}>
                 <Stack spacing={2} >
-                    <Pagination className={classes.root}  count={11} color="primary" page={page} onChange={handlePage} size="large"  />
+                    <Pagination className={classes.root}  count={12} color="primary" page={page} onChange={handlePage} size="large"  />
                 </Stack>
             </Grid>
             </>
@@ -132,7 +132,7 @@ let PrintPage = (props) => {
                                 size_uk={(page*4) + 8}
                                 size_us={(page*4) + 4}
                                 size_eu={(page*4) + 36}
-                                us_styles={page<2? '7px': '3px'}
+                                us_styles={page<2? '11px': '6px'}
                                 colour={props.colour}
                                 circle={props.circle}
                             />
@@ -158,7 +158,7 @@ let PrintPage = (props) => {
                 </Grid>
                 <Grid item container className={classes.paginationContainer}>
                     <Stack spacing={2} >
-                        <Pagination className={classes.root}  count={11} color="primary" page={page} onChange={handlePage} size="large"  />
+                        <Pagination className={classes.root}  count={6} color="primary" page={page} onChange={handlePage} size="large"  />
                     </Stack>
                 </Grid>
             </>
@@ -171,10 +171,11 @@ let PrintPage = (props) => {
                             <CreateLetterPratibhaPrint 
                                 key={index*100}
                                 title={props.title}
-                                size_uk={(page+5)*2}
-                                size_us={(page+3)*2}
-                                size_eu={(page+19)*2}
-                                us_styles={page<2? '3px': '0'}
+                                size_uk={page === 1 ? "S" : page === 2 ? "M" : "L" }
+                                size_us={page === 1 ? "S" : page === 2 ? "M" : "L" }
+                                size_eu={page === 1 ? "S" : page === 2 ? "M" : "L" }
+                                // us_styles={'3px'}
+                                page={page}
                                 colour={props.colour}
                                 circle={props.circle}
                             />
@@ -200,7 +201,7 @@ let PrintPage = (props) => {
                 </Grid>
                 <Grid item container className={classes.paginationContainer}>
                     <Stack spacing={2} >
-                        <Pagination className={classes.root}  count={11} color="primary" page={page} onChange={handlePage} size="large"  />
+                        <Pagination className={classes.root}  count={3} color="primary" page={page} onChange={handlePage} size="large"  />
                     </Stack>
                 </Grid>
             </>

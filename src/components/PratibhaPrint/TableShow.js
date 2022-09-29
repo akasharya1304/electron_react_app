@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
         margin: '3% 0'
     },
     tableShowContainer: {
-        width: '85%',
+        width: '99%',
         margin: '0 auto',
         fontWeight: '700'
     },
@@ -55,6 +55,7 @@ let TableShow = (props) => {
                                 <TableCell>S.No.</TableCell>
                                 <TableCell align='center'>STYLE</TableCell>
                                 <TableCell align='center'>COLOUR</TableCell>
+                                <TableCell align='center'>10</TableCell>
                                 <TableCell align='center'>12</TableCell>
                                 <TableCell align='center'>14</TableCell>
                                 <TableCell align='center'>16</TableCell>
@@ -87,6 +88,7 @@ let TableShow = (props) => {
                                     <TableCell align='center'>{item[12]}</TableCell>
                                     <TableCell align='center'>{item[13]}</TableCell>
                                     <TableCell align='center'>{item[14]}</TableCell>
+                                    <TableCell align='center'>{item[15]}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

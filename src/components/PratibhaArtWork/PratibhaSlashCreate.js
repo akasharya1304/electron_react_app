@@ -109,9 +109,9 @@ let PratibhaSlashCreate = (props) => {
     const classes = useStyles();
     let fontSizes = '14px';
 
-    // if((props.colour).length >= 13) {
-    //     fontSizes = '12px'
-    // }
+    if((props.colour).length >= 11) {
+        fontSizes = '12px'
+    }
 
     return (
         <Grid container className={classes.createBox} style={{ borderStyle : `${props.borderStyle}`}}>

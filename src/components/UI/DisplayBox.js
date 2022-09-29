@@ -20,7 +20,9 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         width: '892px',
         height: '630px',
+        // height: '730px',
         margin: '81px auto',
+        // margin: '30px auto 81px auto',
         border: '1px solid red',
         backgroundColor: '#FFF',
         alignContent: 'flex-start',
@@ -82,6 +84,16 @@ let DisplayBox = (props) => {
                     <Typography xs={12} className={classes.displayTitle}># {props.Title} - {props.colour}</Typography>
                 </Grid>
                 <Grid item container xs= {12} className={classes.displayArtworkContainer}>
+                {/* <Create 
+                        title={props.Title}
+                        size_uk='8'
+                        size_eu='36'
+                        size_us='4'
+                        uk_styles='3px'
+                        us_styles='3px'
+                        colour={props.colour}
+                        circle={props.circle}
+                    /> */}
                     <Create 
                         title={props.Title}
                         size_uk='10'
