@@ -5,6 +5,7 @@ import handlePreviewPage from "../UI/PAGE_PREVIEW";
 import handlePrintPage from "../UI/PAGE_PRINT";
 import NakdDesign from "./NakdDesign";
 import "./nakd.module.css"
+import handleSuperBPagePreview from "./SuperBPagePreview";
 
 const useStyles = makeStyles((theme) => ({
   contentContainer: {
@@ -115,7 +116,8 @@ const Content = (props) => {
             )}
             pageStyle={`@page { size: 8.07in 11.42in; margin: 0 }`}
             content={() => componentRef.current}
-            print={handlePreviewPage}
+            // print={handlePreviewPage}
+            print={handleSuperBPagePreview}
           />
         </div>
       </div>

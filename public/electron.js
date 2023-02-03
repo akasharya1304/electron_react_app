@@ -258,15 +258,14 @@ let previewSuperBPageOptions  = {
   silent: false,
   printBackground: false,
   color: false,
-  margins: {
-    marginType: 'printableArea',
-  },
+  marginType: 0,
   landscape: false,
   pagesPerSheet: 1,
   scaleFactor: 100,
   collate: false,
   copies: 1,
-  pageSize: 'Legal',
+  // pageSize: 'Legal',
+  preferCSSPageSize: true
 }
 
 
