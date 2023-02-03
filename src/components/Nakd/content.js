@@ -27,11 +27,9 @@ const useStyles = makeStyles((theme) => ({
     height: "290mm",
     // height: "11.69in",
     width: "205mm",
-    // width: "8.26in",
-    // padding: "2mm 0 0 5mm",
-    // margin: "0",
-    // margin: '81px auto',
-    // border: "1px solid black",
+    "@media print": {
+      breakAfter: "always",
+    },
   },
 }));
 // 8.26 × 11.69 in
@@ -45,7 +43,6 @@ const Content = (props) => {
         <NakdDesign {...props} articleLastNumber={props.articleLastNumber} />
         <NakdDesign {...props} articleLastNumber={props.articleLastNumber} />
       </div>
-      // </>
     );
   };
 
@@ -107,7 +104,7 @@ const Content = (props) => {
             trigger={() => (
               <button className="printButton">Print - Page</button>
             )}
-            pageStyle='@page { size: 205mm 281.5mm }'
+            pageStyle='@page { size: 8.07in 11.42in; margin: 0 }'
             content={() => componentRef.current}
             print={handlePrintPage}
           />
@@ -116,7 +113,7 @@ const Content = (props) => {
             trigger={() => (
               <button className="printButton">Preview - Page</button>
             )}
-            pageStyle={`@page { size: 205mm 290mm; margin: 0 }`}
+            pageStyle={`@page { size: 8.07in 11.42in; margin: 0 }`}
             content={() => componentRef.current}
             print={handlePreviewPage}
           />

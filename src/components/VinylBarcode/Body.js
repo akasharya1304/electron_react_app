@@ -40,8 +40,8 @@ const Body = () => {
 
   useEffect(() => {
     if (
-      inputData.barcodeEnd.length === 18 &&
-      inputData.barcodeStart.length === 18
+      inputData.barcodeEnd.length >= 18 &&
+      inputData.barcodeStart.length >= 18
     ) {
       console.log(
         Number(inputData.barcodeEnd.slice(9)) -

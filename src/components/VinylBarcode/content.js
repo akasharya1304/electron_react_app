@@ -16,10 +16,14 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "flex-start",
-    padding: '1% auto',
+    padding: "1% auto",
     background: "#FFF",
     height: "19in",
     width: "13in",
+
+    "@media print": {
+      breakAfter: "always",
+    },
     // border: '1px solid brown'
   },
   headingContainer: {
@@ -38,9 +42,9 @@ const useStyles = makeStyles((theme) => ({
   camarronDesignContainer: {
     display: "flex",
     flexWrap: "wrap",
-    width: '12in',
+    width: "12in",
     // height: '18.9in',
-    justifyContent: 'flex-start'
+    justifyContent: "flex-start",
   },
 }));
 // 8.26 × 11.69 in
@@ -53,7 +57,7 @@ const Content = (props) => {
 
   const VinylBarcode = (props) => {
     const { classes, inputNo, inputData, pageNo } = props;
-    console.log(inputNo)
+    console.log(inputNo);
     return (
       <div className={classes.PageInnerContainer}>
         <div className={classes.camarronDesignContainer}>
@@ -64,7 +68,8 @@ const Content = (props) => {
                 barcode={String(
                   String(inputData.barcodeStart.slice(0, 9)) +
                     String(
-                      Number(inputData.barcodeStart.slice(9)) + Number((24 * pageNo ) + Number(index)) 
+                      Number(inputData.barcodeStart.slice(9)) +
+                        Number(24 * pageNo + Number(index))
                     )
                 )}
               />
@@ -85,7 +90,7 @@ const Content = (props) => {
                 key={index + "vinylBarcode"}
                 classes={classes}
                 inputNo={
-                  Math.ceil((inputCount / (24 * (index + 1)))) > 1
+                  Math.ceil(inputCount / (24 * (index + 1))) > 1
                     ? 24
                     : inputCount - 24 * index
                 }
@@ -110,7 +115,7 @@ const Content = (props) => {
             trigger={() => (
               <button className="printButton">Preview - Page</button>
             )}
-            pageStyle={`@page { size: 13in 19in; margin: 0 }`}
+            pageStyle={`@page { size: 13in 19in; margin: 0; }`}
             content={() => componentRef.current}
             print={handleSuperBPagePreview}
           />
