@@ -1,173 +1,190 @@
-import { makeStyles } from '@material-ui/core/styles';
-import { useState } from 'react';
-import Grid from '@material-ui/core/Grid';
-import { Box, Button, FormControl, MenuItem, Select, TextField, Typography } from '@material-ui/core';
-import TableData from './TableData';
-import RefreshRoundedIcon from '@mui/icons-material/RefreshRounded';
-
-
-
+import { makeStyles } from "@material-ui/core/styles";
+import { useState } from "react";
+import Grid from "@material-ui/core/Grid";
+import {
+  Box,
+  Button,
+  FormControl,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+} from "@material-ui/core";
+import TableData from "./TableData";
+import RefreshRoundedIcon from "@mui/icons-material/RefreshRounded";
 
 const useStyles = makeStyles((theme) => ({
-    introContainer: {
-        display: 'flex',
-        height: '100%',
-        width: '100%',
-        backgroundColor: '#4472C4'
-    },
-    reloadButton: {
-        display: 'flex',
-        color: 'white',
-        margin: '2% 0 0 7% ',
-        transform: 'scale(1.2)',
+  introContainer: {
+    display: "flex",
+    height: "100%",
+    width: "100%",
+    backgroundColor: "#4472C4",
+  },
+  reloadButton: {
+    display: "flex",
+    color: "white",
+    margin: "0 3%",
+    transform: "scale(1.2)",
 
-        "&:hover" : {
-            color: 'red',
-            backgroundColor: '#4472C4'
-        }
+    "&:hover": {
+      color: "red",
+      backgroundColor: "#4472C4",
     },
-    heading: {
-        fontSize: '32px',
-        fontWeight: '800',
-        textDecoration: 'underline',
-        color: '#1a4ba1',
-        letterSpacing: '0.2rem',
-        margin: '1% 5% 0 5%'
-    },
-    introInnerContainer: {
-        display: 'flex',
-        flexDirection: 'column',
-        margin: '0',
-        alignContent: 'center',
-        justifyContent: 'flex-start', 
-    },
-    title: {
-        fontWeight: '700',
-        color: '#dd7724',
-        margin: '1% 0'
-    },
-    textArea: {
-        width :'90%',
-        padding: '1%',
-        border: '5px dotted #101d8d',
-        backgroundColor: '#0370a3',
-        scrollbarColor: 'red green'
-    },
-    fontColor: {
-        color: '#FFF',
-        fontSize : '20px',
-        fontWeight: '600',
-        lineHeight : '2'
-    },
-    button: {
-        display: 'flex',
-        width : '40%',
-        borderRadius: '15px',
-        margin: '1% 0',
-        fontSize: '20px',
-        fontWeight : '700',
-        backgroundColor: '#dd7724',
-        color: '#FFF',
-        padding: '1%',
+  },
+  heading: {
+    fontSize: "32px",
+    fontWeight: "800",
+    textDecoration: "underline",
+    color: "#1a4ba1",
+    letterSpacing: "0.2rem",
+    margin: "1% 5% 0 5%",
+  },
+  introInnerContainer: {
+    display: "flex",
+    flexDirection: "column",
+    margin: "0",
+    alignContent: "center",
+    justifyContent: "flex-start",
+  },
+  title: {
+    fontWeight: "700",
+    color: "#dd7724",
+    margin: "1% 0",
+  },
+  textArea: {
+    width: "90%",
+    padding: "1%",
+    border: "5px dotted #101d8d",
+    backgroundColor: "#0370a3",
+    scrollbarColor: "red green",
+  },
+  fontColor: {
+    color: "#FFF",
+    fontSize: "20px",
+    fontWeight: "600",
+    lineHeight: "2",
+  },
+  button: {
+    display: "flex",
+    width: "40%",
+    borderRadius: "15px",
+    margin: "1% 0",
+    fontSize: "20px",
+    fontWeight: "700",
+    backgroundColor: "#dd7724",
+    color: "#FFF",
+    padding: "1%",
 
-        "&:hover" : {
-            backgroundColor: '#18b603',
-        }
-    }
+    "&:hover": {
+      backgroundColor: "#18b603",
+    },
+  },
 }));
 
 let InsertData = () => {
-    const classes = useStyles();
+  const classes = useStyles();
 
-    
-    const [displayValue , setDisplayValue] = useState('none');
-    const [area , setArea] = useState([]);
-    const [data , setData] = useState([]);
+  const [displayValue, setDisplayValue] = useState("none");
+  const [area, setArea] = useState([]);
+  const [data, setData] = useState([]);
 
-    const [type, setType] = useState(10);
+  const [type, setType] = useState('');
 
-    const handleChange = (event) => {
-        setType(event.target.value);
-    };
+  const handleChange = (event) => {
+    setType(event.target.value);
+  };
 
-    function refreshPage(){
-        window.location.reload();
-    } 
+  function refreshPage() {
+    window.location.reload();
+  }
 
-    function handleTextArea(event) {
-        const areaValue = event.target.value
-        const line = areaValue.split('\n')
-        let item = [];
-        for(let i=0 ; i<line.length ; i++){
-            if((line[i].split('\t')).length <= 1){
-                i++
-            }
-            else {
-                item.push(line[i].split('\t'))
-            }
-        }
-
-        for(let i=0; i<item.length ; i++){
-            item[i][3] = '1';
-        }
-
-        setArea(line)
-        setData(item)
+  function handleTextArea(event) {
+    const areaValue = event.target.value;
+    const line = areaValue.split("\n");
+    let item = [];
+    for (let i = 0; i < line.length; i++) {
+      if (line[i].split("\t").length <= 1) {
+        i++;
+      } else {
+        item.push(line[i].split("\t"));
+      }
     }
 
-    function handleDataDisplay() {
-        setDisplayValue('block');
+    for (let i = 0; i < item.length; i++) {
+      item[i][3] = "1";
     }
 
-    return (
-        <Grid container className={classes.introContainer}>
-            <Grid container xs={10} alignItems="center">
-                <Button variant='text' className={classes.reloadButton} onClick={refreshPage}>
-                    <RefreshRoundedIcon />
-                </Button>
-                <Box sx={{ maxWidth: 120 }} className={classes.reloadButton}>
-                    <FormControl fullWidth>
-                        <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={type}
-                        label="Age"
-                        onChange={handleChange}
-                        >
-                        <MenuItem value={10}>Normal</MenuItem>
-                        <MenuItem value={20}>Slash</MenuItem>
-                        <MenuItem value={30}>Word</MenuItem>
-                        </Select>
-                    </FormControl>
-                </Box>
-            </Grid>
-            <Typography xs={10} variant='h3' component='div' className={classes.heading}>
-                JD POLYBAG ARTWORK (PRATIBHA)
-            </Typography>
-            <Grid item container className={classes.introInnerContainer}>
-                <Typography variant='h3' component='div' className={classes.title}>
-                    Paste data down Here
-                </Typography>
-                <TextField 
-                    variant='standard' 
-                    InputProps={{ disableUnderline: true }}
-                    multiline 
-                    minRows={12} 
-                    className={classes.textArea}
-                    inputProps={{className: classes.fontColor}}
-                    onChange={handleTextArea} 
-                    placeholder=' 1	CH324	BLACK 
+    setArea(line);
+    setData(item);
+  }
+
+  function handleDataDisplay() {
+    setDisplayValue("block");
+  }
+
+  return (
+    <Grid container className={classes.introContainer}>
+      <Grid container xs={12} style={{ alignItems: "center" }}>
+        <Button
+          variant="text"
+          className={classes.reloadButton}
+          onClick={refreshPage}
+        >
+          <RefreshRoundedIcon />
+        </Button>
+        <FormControl style={{ width: 150 }} variant="outlined">
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={type}
+            displayEmpty
+						style={{ backgroundColor: '#ddd' }}
+            onChange={handleChange}
+          >
+					<MenuItem value=""><em>Select Type</em></MenuItem>
+            <MenuItem value={10}>Normal</MenuItem>
+            <MenuItem value={20}>Slash</MenuItem>
+            <MenuItem value={30}>Word</MenuItem>
+          </Select>
+        </FormControl>
+        <Typography
+          xs={10}
+          variant="h3"
+          component="div"
+          className={classes.heading}
+        >
+          JD POLYBAG ARTWORK (PRATIBHA)
+        </Typography>
+      </Grid>
+
+      <Grid item container className={classes.introInnerContainer}>
+        <Typography variant="h3" component="div" className={classes.title}>
+          Paste data down Here
+        </Typography>
+        <TextField
+          variant="standard"
+          InputProps={{ disableUnderline: true }}
+          multiline
+          minRows={12}
+          className={classes.textArea}
+          inputProps={{ className: classes.fontColor }}
+          onChange={handleTextArea}
+          placeholder=" 1	CH324	BLACK 
                                     2	CH326	MONO PRINT
                                     3	CH348	BLACK  
-                                    4	CH353	WHITE  '
-                />
-                <Button variant='text' className={classes.button} onClick={handleDataDisplay}>
-                    Show Data
-                </Button>
-            </Grid>
-            <TableData  displayValues={displayValue} data={data} sizeValue={type}/>
-        </Grid>
-    )
-}
+                                    4	CH353	WHITE  "
+        />
+        <Button
+          variant="text"
+          className={classes.button}
+          onClick={handleDataDisplay}
+        >
+          Show Data
+        </Button>
+      </Grid>
+      <TableData displayValues={displayValue} data={data} sizeValue={type} />
+    </Grid>
+  );
+};
 
 export default InsertData;
