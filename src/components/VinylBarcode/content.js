@@ -4,6 +4,7 @@ import ReactToPrint from "react-to-print";
 import handlePrintPage from "../UI/PAGE_PRINT";
 import VinylBarcodeDesign from "./vinylBarcodeDesign";
 import handleSuperBPagePreview from "./SuperBPagePreview";
+import "../Nakd/nakd.module.css";
 
 const useStyles = makeStyles((theme) => ({
   contentContainer: {
@@ -16,13 +17,12 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "flex-start",
-    padding: "1% auto",
     background: "#FFF",
     height: "19in",
     width: "13in",
 
     "@media print": {
-      breakAfter: "always",
+      breakInside: "avoid",
     },
     // border: '1px solid brown'
   },
@@ -59,7 +59,11 @@ const Content = (props) => {
     const { classes, inputNo, inputData, pageNo } = props;
     console.log(inputNo);
     return (
-      <div className={classes.PageInnerContainer}>
+      <div
+        id="page_break_div"
+        className={classes.PageInnerContainer}
+        style={{ justifyContent: inputNo === 24 ? "center" : "flex-start" }}
+      >
         <div className={classes.camarronDesignContainer}>
           {[...Array(inputNo).keys()].map((components, index) => {
             return (
@@ -115,7 +119,7 @@ const Content = (props) => {
             trigger={() => (
               <button className="printButton">Preview - Page</button>
             )}
-            pageStyle={`@page { size: 13in 19in; margin: 0; }`}
+            pageStyle={`@media print { @page { size: 13in 19in; margin: 0; } }` }
             content={() => componentRef.current}
             print={handleSuperBPagePreview}
           />

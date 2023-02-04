@@ -66,14 +66,14 @@ const InputDesign = (props) => {
   const { inputData, handleInputData} = props;
   return (
     <div className={classes.inputDesignBox}>
-    <Typography className={classes.headingContainer}>BARCODE </Typography>
+    <Typography className={classes.headingContainer}>BARCODE: 22SP02002270000876 </Typography>
       <div className={classes.textInputContainer}>
         <Typography className={classes.textInputTitle}>Start : </Typography>
         <TextField
           name="barcodeStart"
           type="text"
           className={classes.textAreaInput}
-          inputProps={{ className: classes.fontColor }}
+          inputProps={{ className: classes.fontColor, maxLength: 18, minLength: 18, max: 18 }}
           value={inputData?.barcodeStart}
           onChange={handleInputData}
           placeholder="22SP02002270000876"
@@ -85,7 +85,7 @@ const InputDesign = (props) => {
           name="barcodeEnd"
           type="text"
           className={classes.textAreaInput}
-          inputProps={{ className: classes.fontColor }}
+          inputProps={{ className: classes.fontColor, maxLength: 18, minLength: 18, max: 18 }}
           value={inputData?.barcodeEnd}
           onChange={handleInputData}
           placeholder="22SP02002270000877"

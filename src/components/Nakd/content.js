@@ -4,7 +4,7 @@ import ReactToPrint from "react-to-print";
 import handlePreviewPage from "../UI/PAGE_PREVIEW";
 import handlePrintPage from "../UI/PAGE_PRINT";
 import NakdDesign from "./NakdDesign";
-import "./nakd.module.css"
+import "./nakd.module.css";
 import handleSuperBPagePreview from "./SuperBPagePreview";
 
 const useStyles = makeStyles((theme) => ({
@@ -26,11 +26,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     background: "#FFF",
     height: "290mm",
-    // height: "11.69in",
     width: "205mm",
-    "@media print": {
-      breakAfter: "always",
-    },
+    marginBottom: '7mm',
+    // padding: "2mm 5mm 0 0",
+    margin: "0",
   },
 }));
 // 8.26 × 11.69 in
@@ -40,7 +39,7 @@ const Content = (props) => {
 
   const OnePageComponent = (props) => {
     return (
-      <div className={classes.PageInnerContainer} id="nakdPage">
+      <div className={classes.PageInnerContainer} id="page_break_div ">
         <NakdDesign {...props} articleLastNumber={props.articleLastNumber} />
         <NakdDesign {...props} articleLastNumber={props.articleLastNumber} />
       </div>
@@ -105,7 +104,7 @@ const Content = (props) => {
             trigger={() => (
               <button className="printButton">Print - Page</button>
             )}
-            pageStyle='@page { size: 8.07in 11.42in; margin: 0 }'
+            // pageStyle="@page { size: 8.07in 11.69in; margin: `0.4in` }"
             content={() => componentRef.current}
             print={handlePrintPage}
           />
@@ -114,10 +113,9 @@ const Content = (props) => {
             trigger={() => (
               <button className="printButton">Preview - Page</button>
             )}
-            pageStyle={`@page { size: 8.07in 11.42in; margin: 0 }`}
+            // pageStyle="@page { size: 8.07in 11.69in; margin: 0; }"
             content={() => componentRef.current}
-            // print={handlePreviewPage}
-            print={handleSuperBPagePreview}
+            print={handlePreviewPage}
           />
         </div>
       </div>

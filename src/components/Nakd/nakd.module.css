@@ -1,11 +1,12 @@
-@media all {
+/* @media all {
   .page-break {
     display: none;
   }
-}
+} */
 
 @media print {
-  .page-break {
-    page-break-after: always;
+  #page_break_div {
+    break-after: always;
+    break-inside: avoid;
   }
 }
